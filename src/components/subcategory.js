@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
-import './App.css';
-import './form.css';
-import subcategory from './components/subcategory.js';
+
+
 
 const initialState = {
   name: "",
@@ -14,7 +12,10 @@ const initialState = {
   Common_name: "",
   Common_nameError: "",
   GSTN: "",
-  GSTNError: ""
+  GSTNError: "",
+  Category_id: "",
+  Category_idError: ""
+
 };
 
 export default class ValiationForm extends React.Component {
@@ -35,7 +36,7 @@ export default class ValiationForm extends React.Component {
     let CodeError = "";
     let Common_nameError = "";
     let GSTNError = "";
-
+    let Category_idError ="";
     if (!this.state.name) {
       nameError = "name cannot be blank";
     }
@@ -56,8 +57,12 @@ export default class ValiationForm extends React.Component {
       GSTNError = "GSTN cannot be blank";
     }
 
-    if (idError || nameError || CodeError || Common_nameError || GSTNError) {
-      this.setState({ idError, nameError,CodeError,Common_nameError,GSTNError });
+    if (!this.state.Category_id) {
+        Category_idError = "Cateogry id  cannot be blank";
+      }
+
+    if (idError || nameError || CodeError || Common_nameError || GSTNError || Category_idError) {
+      this.setState({ idError, nameError,CodeError,Common_nameError,GSTNError,Category_idError });
       return false;
     }
 
@@ -78,7 +83,7 @@ export default class ValiationForm extends React.Component {
     return (
       <div className="container">
       <form onSubmit={this.handleSubmit}>
-        <h1>Category Details</h1>
+        <h1>Subcategory Details</h1>
         <div >
           Name:<input
             name="name"
@@ -115,6 +120,20 @@ export default class ValiationForm extends React.Component {
           />
           <div style={{ fontSize: 12, color: "red" }}>
             {this.state.CodeError}
+          </div>
+        </div>
+
+        <div>
+          Category_id<input
+            type="number"
+            name="Category_id"
+            placeholder="Category_id"
+            value={this.state.Category_id}
+            onChange={this.handleChange}
+            className="input"
+          />
+          <div style={{ fontSize: 12, color: "red" }}>
+            {this.state.Category_idError}
           </div>
         </div>
 
