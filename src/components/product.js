@@ -171,7 +171,7 @@ const initialState = {
        <form onSubmit={this.handleSubmit}>
          <h1>Product Details</h1>
          <div >
-           Name:<input
+           id:<input
              name="id"
              type= "number"
              placeholder="id"
@@ -185,7 +185,7 @@ const initialState = {
          </div>
  
          <div >
-           Name:<input
+           code:<input
              name="code"
              type= "number"
              placeholder="code"
@@ -213,7 +213,7 @@ const initialState = {
          </div>
  
          <div >
-           Name:<input
+           GSTN:<input
              name="GSTN"
              type= "number"
              placeholder="GSTN"
@@ -227,7 +227,7 @@ const initialState = {
          </div>
  
          <div >
-           Name:<input
+           Flange:<input
              name="flange1"
              type= "number"
              placeholder="flange1"
@@ -241,7 +241,7 @@ const initialState = {
          </div>
  
          <div >
-           Name:<input
+           Flange2:<input
              name="flange2"
              type= "number"
              placeholder="flange2"
@@ -255,7 +255,7 @@ const initialState = {
          </div>
  
          <div >
-           Name:<input
+         Flange3:<input
              name="flange3"
              type= "number"
              placeholder="flange3"
@@ -269,7 +269,7 @@ const initialState = {
          </div>
           
          <div >
-           Name:<input
+         Weight_per_meter:<input
              name="weight_per_meter"
              type= "number"
              placeholder="weight_per_meter"
@@ -283,7 +283,7 @@ const initialState = {
          </div>
          
          <div >
-           Name:<input
+         Thickness:<input
              name="thickness"
              type= "number"
              placeholder="thickness"
@@ -297,7 +297,7 @@ const initialState = {
          </div>
  
          <div >
-           Name:<input
+         Width:<input
              name="width"
              type= "number"
              placeholder="width"
@@ -311,7 +311,7 @@ const initialState = {
          </div>
          
          <div >
-           Name:<input
+         Length:<input
              name="length"
              type= "number"
              placeholder="length"
@@ -325,7 +325,7 @@ const initialState = {
          </div>
          
          <div >
-         Name:<input
+         Description:<input
            name="description"
            type= "number"
            placeholder="description"
@@ -339,7 +339,7 @@ const initialState = {
        </div>
          
        <div >
-         Name:<input
+       Common_name:<input
            name="Common_name"
            type= "number"
            placeholder="Common_name"
@@ -353,7 +353,7 @@ const initialState = {
        </div>
         
        <div >
-         Name:<input
+       Grade_specs:<input
            name="grade_specs"
            type= "number"
            placeholder="grade_specs"
@@ -367,7 +367,7 @@ const initialState = {
        </div>
  
        <div >
-         Name:<input
+       Brandname:<input
            name="brandname"
            type= "number"
            placeholder="brandname"
@@ -382,7 +382,7 @@ const initialState = {
  
        <div >
          Name:<input
-           name="outer_diameter"
+           Outer_diameter="outer_diameter"
            type= "number"
            placeholder="outer_diameter"
            value={this.state.outer_diameter}
