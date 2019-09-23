@@ -1,18 +1,17 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 const initialState = {
+  code: "",
   name: "",
-  id: "",
-  Code: "",
   nameError: "",
-  idError: "",
-  CodeError: "",
-  Common_name: "",
-  Common_nameError: "",
-  GSTN: "",
-  GSTNError: "",
-  Category_id: "",
-  Category_idError: ""
+  
+  codeError: "",
+  common_name: "",
+  common_nameError: "",
+  gstn: "",
+  gstnError: "",
+  category_id: "",
+  category_idError: ""
 
 };
 
@@ -29,38 +28,36 @@ export default class ValiationForm extends Component {
   };
 
   validate = () => {
+    
+    let codeError = "";
     let nameError = "";
-    let idError = "";
-    let CodeError = "";
-    let Common_nameError = "";
-    let GSTNError = "";
-    let Category_idError ="";
+    let common_nameError = "";
+    let gstnError = "";
+    let category_idError ="";
+    
+    if (!this.state.code) {
+      codeError = "Code cannot be blank";
+    }
+
     if (!this.state.name) {
       nameError = "name cannot be blank";
     }
 
-    if (!this.state.id) {
-      idError = "id cannot be blank";
+
+    if (!this.state.common_name) {
+      common_nameError = "Common name cannot be blank";
     }
 
-    if (!this.state.Code) {
-      CodeError = "Code cannot be blank";
+    if (!this.state.gstn) {
+      gstnError = "GSTN cannot be blank";
     }
 
-    if (!this.state.Common_name) {
-      Common_nameError = "Common name cannot be blank";
-    }
-
-    if (!this.state.GSTN) {
-      GSTNError = "GSTN cannot be blank";
-    }
-
-    if (!this.state.Category_id) {
-        Category_idError = "Cateogry id  cannot be blank";
+    if (!this.state.category_id) {
+        category_idError = "Cateogry id  cannot be blank";
       }
 
-    if (idError || nameError || CodeError || Common_nameError || GSTNError || Category_idError) {
-      this.setState({ idError, nameError,CodeError,Common_nameError,GSTNError,Category_idError });
+    if (  codeError || nameError || common_nameError || gstnError || category_idError) {
+      this.setState({ codeError,nameError,common_nameError,gstnError,category_idError });
       return false;
     }
 
@@ -70,7 +67,7 @@ export default class ValiationForm extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const isValid = this.validate();
-    axios.post('/addSubCategory', this.state)
+    axios.post('/http://localhost:5000/addCategory', this.state)
         .then(function (response) {
           console.log(response);
         })
@@ -90,6 +87,19 @@ export default class ValiationForm extends Component {
       <form onSubmit={this.handleSubmit}>
         <h1>Subcategory Details</h1>
         <div>
+          Code<input
+            type="number"
+            name="code"
+            placeholder="code"
+            value={this.state.code}
+            onChange={this.handleChange}
+            className="input"
+          />
+          <div style={{ fontSize: 12, color: "red" }}>
+            {this.state.codeError}
+          </div>
+        </div>
+        <div>
           Name:<input
             name="name"
             placeholder="name"
@@ -101,71 +111,46 @@ export default class ValiationForm extends Component {
             {this.state.nameError}
           </div>
         </div>
-        <div>
-          id:<input
-            type="number"
-            name="id"
-            placeholder="id"
-            value={this.state.id}
-            onChange={this.handleChange}
-            className="input"
-          />
-          <div style={{ fontSize: 12, color: "red" }}>
-            {this.state.idError}
-          </div>
-        </div>
-        <div>
-          Code<input
-            type="number"
-            name="Code"
-            placeholder="Code"
-            value={this.state.Code}
-            onChange={this.handleChange}
-            className="input"
-          />
-          <div style={{ fontSize: 12, color: "red" }}>
-            {this.state.CodeError}
-          </div>
-        </div>
+        
 
         <div>
           Category_id<input
             type="number"
-            name="Category_id"
-            placeholder="Category_id"
-            value={this.state.Category_id}
+            name="category_id"
+            placeholder="category_id"
+            value={this.state.category_id}
             onChange={this.handleChange}
             className="input"
           />
           <div style={{ fontSize: 12, color: "red" }}>
-            {this.state.Category_idError}
+            {this.state.category_idError}
           </div>
         </div>
 
         <div>
           Commonly Used Name:<input
             type="text"
-            name="Common_name"
-            placeholder="Common_name"
-            value={this.state.Common_name}
+            name="common_name"
+            placeholder="common_name"
+            value={this.state.common_name}
             onChange={this.handleChange}
             className="input"
           />
           <div style={{ fontSize: 12, color: "red" }}>
-            {this.state.Common_nameError}
+            {this.state.common_nameError}
           </div>
         </div>
         <div>
           GSTN:<input
             
-            name="GSTN"
+            name="gstn"
             placeholder="GSTN"
-            value={this.state.GSTN}
+            value={this.state.gstn}
             onChange={this.handleChange}
             className="input"
           />
           <div style={{ fontSize: 12, color: "red" }}>
-            {this.state.GSTNError}
+            {this.state.gstnError}
           </div>
         </div>
         <button type="submit"  className="button" >Submit</button>

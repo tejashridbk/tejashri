@@ -2,16 +2,15 @@ import React, {Component} from 'react';
 import axios from "axios";
 
 const initialState = {
+  code: "",
   name: "",
-  id: "",
-  Code: "",
   nameError: "",
   idError: "",
-  CodeError: "",
-  Common_name: "",
-  Common_nameError: "",
-  GSTN: "",
-  GSTNError: ""
+  codeError: "",
+  common_name: "",
+  common_nameError: "",
+  gstn: "",
+  gstnError: ""
 };
 
 export default class ValiationForm extends React.Component {
@@ -27,33 +26,32 @@ export default class ValiationForm extends React.Component {
   };
 
   validate = () => {
+    let codeError = "";
     let nameError = "";
-    let idError = "";
-    let CodeError = "";
-    let Common_nameError = "";
-    let GSTNError = "";
-    // if (!this.state.name) {
-    //   nameError = "name cannot be blank";
-    // }
+    let common_nameError = "";
+    let gstnError = "";
+    
     //
-    // if (!this.state.id) {
-    //   idError = "id cannot be blank";
-    // }
+    
     //
     // if (!this.state.Code) {
     //   CodeError = "Code cannot be blank";
     // }
     //
-    // if (!this.state.Common_name) {
-    //   Common_nameError = "Common name cannot be blank";
+    // if (!this.state.name) {
+    //   nameError = "name cannot be blank";
     // }
     //
-    // if (!this.state.GSTN) {
-    //   GSTNError = "GSTN cannot be blank";
+    // if (!this.state.common_name) {
+    //   common_nameError = "Common name cannot be blank";
+    // }
+    //
+    // if (!this.state.gstn) {
+    //   gstnError = "GSTN cannot be blank";
     // }
 
-    // if (idError || nameError || CodeError || Common_nameError || GSTNError) {
-    //   this.setState({ idError, nameError,CodeError,Common_nameError,GSTNError });
+    // if (idError || nameError || codeError || common_nameError || gstnError) {
+    //   this.setState({ idError, nameError,codeError,common_nameError,gstnError });
     //   return false;
     // }
 
@@ -81,6 +79,20 @@ export default class ValiationForm extends React.Component {
       <div className="container">
       <form onSubmit={this.handleSubmit}>
         <h1>Category Details</h1>
+        <div>
+          Code<input
+            type="number"
+            name="code"
+            placeholder="code"
+            value={this.state.code}
+            onChange={this.handleChange}
+            className="input"
+          />
+          <div style={{ fontSize: 12, color: "red" }}>
+            {this.state.CodeError}
+          </div>
+        </div>
+
         <div >
           Name:<input
             name="name"
@@ -93,45 +105,19 @@ export default class ValiationForm extends React.Component {
             {this.state.nameError}
           </div>
         </div>
-        <div>
-          id:<input
-            type="number"
-            name="id"
-            placeholder="id"
-            value={this.state.id}
-            onChange={this.handleChange}
-            className="input"
-          />
-          <div style={{ fontSize: 12, color: "red" }}>
-            {this.state.idError}
-          </div>
-        </div>
-        <div>
-          Code<input
-            type="number"
-            name="Code"
-            placeholder="Code"
-            value={this.state.Code}
-            onChange={this.handleChange}
-            className="input"
-          />
-          <div style={{ fontSize: 12, color: "red" }}>
-            {this.state.CodeError}
-          </div>
-        </div>
-
+       
         
         <div>
           Commonly Used Name:<input
             type="text"
-            name="Common_name"
-            placeholder="Common_name"
-            value={this.state.Common_name}
+            name="common_name"
+            placeholder="common_name"
+            value={this.state.common_name}
             onChange={this.handleChange}
             className="input"
           />
           <div style={{ fontSize: 12, color: "red" }}>
-            {this.state.Common_nameError}
+            {this.state.common_nameError}
           </div>
         </div>
 
@@ -139,14 +125,14 @@ export default class ValiationForm extends React.Component {
         <div>
           GSTN:<input
             
-            name="GSTN"
-            placeholder="GSTN"
-            value={this.state.GSTN}
+            name="gstn"
+            placeholder="gstn"
+            value={this.state.gstn}
             onChange={this.handleChange}
             className="input"
           />
           <div style={{ fontSize: 12, color: "red" }}>
-            {this.state.GSTNError}
+            {this.state.gstnError}
           </div>
         </div>
 

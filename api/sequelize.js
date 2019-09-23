@@ -1,7 +1,9 @@
 const Sequelize = require('sequelize');
 const CategoryModel = require('./models/Category');
+const SubcategoryModel = require('./models/Subcategory');
 
-const sequelize = new Sequelize('aspen_sales', 'root', 'root', {
+
+const sequelize = new Sequelize('aspen1', 'root', 'tejufcbk', {
   host: 'localhost',
   dialect: 'mysql',
   pool: {
@@ -12,7 +14,8 @@ const sequelize = new Sequelize('aspen_sales', 'root', 'root', {
   }
 })
 
-const Category = CategoryModel(sequelize, Sequelize)
+const Category = CategoryModel(sequelize, Sequelize);
+const Subcategory = SubcategoryModel(sequelize, sequelize)
 // BlogTag will be our way of tracking relationship between Blog and Tag models
 // each Blog can have multiple tags and each Tag can have multiple blogs
 
@@ -23,4 +26,8 @@ sequelize.sync({ force: true })
 
 module.exports = {
     Category,
+     Subcategory
 };
+
+Category.hasmany(Subcategory);
+//Subcategory.belongsto(Category);

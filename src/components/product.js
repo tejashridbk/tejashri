@@ -227,7 +227,7 @@ const initialState = {
          </div>
  
          <div >
-           Flange:<input
+           Flange1:<input
              name="flange1"
              type= "number"
              placeholder="flange1"
