@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
-
-
-
+import axios from 'axios';
 const initialState = {
   name: "",
   id: "",
@@ -18,7 +16,7 @@ const initialState = {
 
 };
 
-export default class ValiationForm extends React.Component {
+export default class ValiationForm extends Component {
   state = initialState;
 
   handleChange = event => {
@@ -72,6 +70,13 @@ export default class ValiationForm extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
     const isValid = this.validate();
+    axios.post('/addSubCategory', this.state)
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     if (isValid) {
       console.log(this.state);
       // clear form
@@ -84,7 +89,7 @@ export default class ValiationForm extends React.Component {
       <div className="container">
       <form onSubmit={this.handleSubmit}>
         <h1>Subcategory Details</h1>
-        <div >
+        <div>
           Name:<input
             name="name"
             placeholder="name"
@@ -150,8 +155,6 @@ export default class ValiationForm extends React.Component {
             {this.state.Common_nameError}
           </div>
         </div>
-
-
         <div>
           GSTN:<input
             
@@ -165,11 +168,6 @@ export default class ValiationForm extends React.Component {
             {this.state.GSTNError}
           </div>
         </div>
-
-
-
-
-
         <button type="submit"  className="button" >Submit</button>
       </form>
       </div>

@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-
-
+import axios from "axios";
 
 const initialState = {
   name: "",
@@ -13,7 +12,6 @@ const initialState = {
   Common_nameError: "",
   GSTN: "",
   GSTNError: ""
-
 };
 
 export default class ValiationForm extends React.Component {
@@ -34,32 +32,30 @@ export default class ValiationForm extends React.Component {
     let CodeError = "";
     let Common_nameError = "";
     let GSTNError = "";
-    if (!this.state.name) {
-      nameError = "name cannot be blank";
-    }
+    // if (!this.state.name) {
+    //   nameError = "name cannot be blank";
+    // }
+    //
+    // if (!this.state.id) {
+    //   idError = "id cannot be blank";
+    // }
+    //
+    // if (!this.state.Code) {
+    //   CodeError = "Code cannot be blank";
+    // }
+    //
+    // if (!this.state.Common_name) {
+    //   Common_nameError = "Common name cannot be blank";
+    // }
+    //
+    // if (!this.state.GSTN) {
+    //   GSTNError = "GSTN cannot be blank";
+    // }
 
-    if (!this.state.id) {
-      idError = "id cannot be blank";
-    }
-
-    if (!this.state.Code) {
-      CodeError = "Code cannot be blank";
-    }
-
-    if (!this.state.Common_name) {
-      Common_nameError = "Common name cannot be blank";
-    }
-
-    if (!this.state.GSTN) {
-      GSTNError = "GSTN cannot be blank";
-    }
-
-    
-
-    if (idError || nameError || CodeError || Common_nameError || GSTNError) {
-      this.setState({ idError, nameError,CodeError,Common_nameError,GSTNError });
-      return false;
-    }
+    // if (idError || nameError || CodeError || Common_nameError || GSTNError) {
+    //   this.setState({ idError, nameError,CodeError,Common_nameError,GSTNError });
+    //   return false;
+    // }
 
     return true;
   };
@@ -68,7 +64,13 @@ export default class ValiationForm extends React.Component {
     event.preventDefault();
     const isValid = this.validate();
     if (isValid) {
-      console.log(this.state);
+      axios.post('http://localhost:5000/addCategory', this.state)
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
       // clear form
       this.setState(initialState);
     }
