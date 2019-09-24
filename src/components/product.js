@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
+import axios from 'axios';
 
 const initialState = {
   
 
 
-    id: "",
+    
     code: "",
     name: "",
-    GSTN: "",
+    gstn: "",
     flange1: "",
     flange2: "",
     flange3: "",
@@ -16,15 +17,15 @@ const initialState = {
     width: "",
     length: "",
     description: "",
-    Common_name: "",
+    common_name: "",
     grade_specs: "",
     brandname: "",
     outer_diameter: "",
  
-    idError: "",
+    
     codeError: "",
     nameError: "",
-    GSTNError: "",
+    gstnError: "",
     flange1Error: "",
     flange2Error: "",
     flange3Error: "",
@@ -33,7 +34,7 @@ const initialState = {
     widthError: "",
     lengthError: "",
     descriptionError: "",
-    Common_nameError: "",
+    common_nameError: "",
     grade_specsError: "",
     brandnameError: "",
     outer_diameterError: ""
@@ -57,10 +58,10 @@ const initialState = {
    validate = () => {
      
  
-     let idError= "";
+     
      let codeError= "";
      let nameError= "";
-     let GSTNError= "";
+     let gstnError= "";
      let flange1Error= "";
      let flange2Error= "";
      let flange3Error= "";
@@ -69,15 +70,12 @@ const initialState = {
      let widthError= "";
      let lengthError= "";
      let descriptionError= "";
-     let Common_nameError= "";
+     let common_nameError= "";
      let  grade_specsError= "";
      let brandnameError= "";
      let outer_diameterError= "";
  
-     if (!this.state.id) {
-       idError = "id cannot be blank";
-     }
- 
+     
      if (!this.state.code) {
        codeError = "code cannot be blank";
      }
@@ -86,8 +84,8 @@ const initialState = {
        nameError = "name cannot be blank";
      }
  
-     if (!this.state.GSTN) {
-       GSTNError = "GSTN cannot be blank";
+     if (!this.state.gstn) {
+       gstnError = "GSTN cannot be blank";
      }
  
  
@@ -123,8 +121,8 @@ const initialState = {
        descriptionError = "description cannot be blank";
      }
  
-     if (!this.state.Common_name) {
-       Common_nameError = "Common_name cannot be blank";
+     if (!this.state.common_name) {
+       common_nameError = "Common_name cannot be blank";
      }
  
      if (!this.state.grade_specs) {
@@ -143,12 +141,12 @@ const initialState = {
  
  
      
-     if (idError || codeError || nameError || GSTNError || flange1Error || flange2Error || flange3Error||
+     if (codeError || nameError || gstnError || flange1Error || flange2Error || flange3Error||
         weight_per_meterError || thicknessError || widthError || lengthError || descriptionError || 
-        Common_nameError || grade_specsError || brandnameError || outer_diameterError) {
-       this.setState({ idError , codeError , nameError , GSTNError , flange1Error , flange2Error , flange3Error ,
+        common_nameError || grade_specsError || brandnameError || outer_diameterError) {
+       this.setState({ codeError , nameError , gstnError , flange1Error , flange2Error , flange3Error ,
          weight_per_meterError , thicknessError , widthError , lengthError , descriptionError , 
-         Common_nameError , grade_specsError , brandnameError , outer_diameterError });
+         common_nameError , grade_specsError , brandnameError , outer_diameterError });
        return false;
      }
  
@@ -158,6 +156,13 @@ const initialState = {
    handleSubmit = event => {
      event.preventDefault();
      const isValid = this.validate();
+     axios.post('http://localhost:5000/addProduct', this.state)
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
      if (isValid) {
        console.log(this.state);
        // clear form
@@ -170,19 +175,7 @@ const initialState = {
        <div className="container">
        <form onSubmit={this.handleSubmit}>
          <h1>Product Details</h1>
-         <div >
-           id:<input
-             name="id"
-             type= "number"
-             placeholder="id"
-             value={this.state.id}
-             onChange={this.handleChange}
-             className="input"
-           />
-           <div style={{ fontSize: 12, color: "red" }}>
-             {this.state.idError}
-           </div>
-         </div>
+         
  
          <div >
            code:<input
@@ -214,15 +207,15 @@ const initialState = {
  
          <div >
            GSTN:<input
-             name="GSTN"
-             type= "number"
-             placeholder="GSTN"
-             value={this.state.id}
+             name="gstn"
+             type= "text"
+             placeholder="gstn"
+             value={this.state.gstn}
              onChange={this.handleChange}
              className="input"
            />
            <div style={{ fontSize: 12, color: "red" }}>
-             {this.state.GSTNError}
+             {this.state.gstnError}
            </div>
          </div>
  
@@ -245,7 +238,7 @@ const initialState = {
              name="flange2"
              type= "number"
              placeholder="flange2"
-             value={this.state.flange1}
+             value={this.state.flange2}
              onChange={this.handleChange}
              className="input"
            />
@@ -259,7 +252,7 @@ const initialState = {
              name="flange3"
              type= "number"
              placeholder="flange3"
-             value={this.state.flange1}
+             value={this.state.flange3}
              onChange={this.handleChange}
              className="input"
            />
@@ -327,7 +320,7 @@ const initialState = {
          <div >
          Description:<input
            name="description"
-           type= "number"
+           type= "text"
            placeholder="description"
            value={this.state.description}
            onChange={this.handleChange}
@@ -340,22 +333,22 @@ const initialState = {
          
        <div >
        Common_name:<input
-           name="Common_name"
-           type= "number"
-           placeholder="Common_name"
-           value={this.state.Common_name}
+           name="common_name"
+           type= "text"
+           placeholder="common_name"
+           value={this.state.common_name}
            onChange={this.handleChange}
            className="input"
          />
          <div style={{ fontSize: 12, color: "red" }}>
-           {this.state.Common_nameError}
+           {this.state.common_nameError}
          </div>
        </div>
         
        <div >
        Grade_specs:<input
            name="grade_specs"
-           type= "number"
+           type= "text"
            placeholder="grade_specs"
            value={this.state.grade_specs}
            onChange={this.handleChange}
@@ -369,7 +362,7 @@ const initialState = {
        <div >
        Brandname:<input
            name="brandname"
-           type= "number"
+           type= "text"
            placeholder="brandname"
            value={this.state.brandname}
            onChange={this.handleChange}
@@ -381,8 +374,8 @@ const initialState = {
        </div>
  
        <div >
-         Name:<input
-           Outer_diameter="outer_diameter"
+         Outer_diameter:<input
+           name="outer_diameter"
            type= "number"
            placeholder="outer_diameter"
            value={this.state.outer_diameter}

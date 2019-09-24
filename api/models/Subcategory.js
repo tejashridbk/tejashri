@@ -12,16 +12,16 @@ module.exports = (sequelize, type) => {
         name: {
             type: type.STRING,
         },
-        category_id: {
-            type: type.INTEGER,
-            foreignKey: true
-        },
         common_name: {
             type: type.STRING
         },
         gstn: {
             type: type.STRING
+        },
+        categoryId: {
+            type: type.INTEGER,
+            foreignKey: true
         }
-        
     })
 }
+

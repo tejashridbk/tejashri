@@ -10,8 +10,8 @@ const initialState = {
   common_nameError: "",
   gstn: "",
   gstnError: "",
-  category_id: "",
-  category_idError: ""
+  categoryId: "",
+  categoryIdError: ""
 
 };
 
@@ -33,7 +33,7 @@ export default class ValiationForm extends Component {
     let nameError = "";
     let common_nameError = "";
     let gstnError = "";
-    let category_idError ="";
+    let categoryIdError ="";
     
     if (!this.state.code) {
       codeError = "Code cannot be blank";
@@ -52,12 +52,12 @@ export default class ValiationForm extends Component {
       gstnError = "GSTN cannot be blank";
     }
 
-    if (!this.state.category_id) {
-        category_idError = "Cateogry id  cannot be blank";
+    if (!this.state.categoryId) {
+        categoryIdError = "Cateogryids  cannot be blank";
       }
 
-    if (  codeError || nameError || common_nameError || gstnError || category_idError) {
-      this.setState({ codeError,nameError,common_nameError,gstnError,category_idError });
+    if (  codeError || nameError || common_nameError || gstnError || categoryIdError) {
+      this.setState({ codeError,nameError,common_nameError,gstnError,categoryIdError });
       return false;
     }
 
@@ -67,7 +67,7 @@ export default class ValiationForm extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const isValid = this.validate();
-    axios.post('/http://localhost:5000/addCategory', this.state)
+    axios.post('http://localhost:5000/addSubcategory', this.state)
         .then(function (response) {
           console.log(response);
         })
@@ -113,19 +113,6 @@ export default class ValiationForm extends Component {
         </div>
         
 
-        <div>
-          Category_id<input
-            type="number"
-            name="category_id"
-            placeholder="category_id"
-            value={this.state.category_id}
-            onChange={this.handleChange}
-            className="input"
-          />
-          <div style={{ fontSize: 12, color: "red" }}>
-            {this.state.category_idError}
-          </div>
-        </div>
 
         <div>
           Commonly Used Name:<input
@@ -144,6 +131,7 @@ export default class ValiationForm extends Component {
           GSTN:<input
             
             name="gstn"
+            type="text"
             placeholder="GSTN"
             value={this.state.gstn}
             onChange={this.handleChange}
@@ -152,6 +140,21 @@ export default class ValiationForm extends Component {
           <div style={{ fontSize: 12, color: "red" }}>
             {this.state.gstnError}
           </div>
+
+          
+        <div>
+          CategoryId<input
+            type="number"
+            name="categoryId"
+            placeholder="categoryId"
+            value={this.state.categoryId}
+            onChange={this.handleChange}
+            className="input"
+          />
+          <div style={{ fontSize: 12, color: "red" }}>
+            {this.state.categoryIdError}
+          </div>
+        </div>
         </div>
         <button type="submit"  className="button" >Submit</button>
       </form>

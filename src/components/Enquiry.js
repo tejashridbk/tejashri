@@ -76,69 +76,62 @@ export default class ValiationForm extends React.Component {
 
   render() {
     return (
+      
       <div className="container">
       <form onSubmit={this.handleSubmit}>
-        <h1>Category Details</h1>
-        <div>
-          Code:<input
-            type="number"
-            name="code"
-            placeholder="code"
-            value={this.state.code}
-            onChange={this.handleChange}
-            className="input"
-          />
-          <div style={{ fontSize: 12, color: "red" }}>
-            {this.state.codeError}
-          </div>
-        </div>
-
-        <div >
-          Name:<input
-            name="name"
-            type="text"
-            placeholder="name"
-            value={this.state.name}
-            onChange={this.handleChange}
-            className="input"
-          />
-          <div style={{ fontSize: 12, color: "red" }}>
-            {this.state.nameError}
-          </div>
-        </div>
-       
-        
-        <div>
-          Commonly Used Name:<input
-            type="text"
-            name="common_name"
-            placeholder="common_name"
-            value={this.state.common_name}
-            onChange={this.handleChange}
-            className="input"
-          />
-          <div style={{ fontSize: 12, color: "red" }}>
-            {this.state.common_nameError}
-          </div>
-        </div>
-
-
-        <div>
-          GSTN:<input
-            
-            name="gstn"
-            placeholder="gstn"
-            value={this.state.gstn}
-            onChange={this.handleChange}
-            className="input"
-          />
-          <div style={{ fontSize: 12, color: "red" }}>
-            {this.state.gstnError}
-          </div>
-        </div>
-
-
-
+        <h1>Enquiry Form</h1>
+         <div> 
+           <label> Address:<input  type="text" className="input"/></label>
+         </div>
+         <div>
+           <label>phone no.:<input  type="number" className="input"/></label>
+           </div>
+           <div>
+           <label>EmailId:<input  type="Email" className="input"/></label>
+           </div>
+         <div>
+           <label>Party Name:<input  type="text" className="input"/></label>
+           </div>
+         <div>
+           <label>Party Address :<input  type="text" className="input"/></label>
+           </div>
+         <div>
+           <label>Qtn no.:<input  type="number" className="input"/></label>
+           </div>
+         <div>
+           <label>Date:<input  type="date" className="input"/></label>
+           </div>
+         <div >
+           <label>Category: 
+           <select classname="teju">
+            <option >Channel</option>
+            <option >Joist Beam</option>
+          </select>
+             
+             </label>
+           </div>
+         <div >
+           <label >Subcategory:
+           <select >
+            <option >Re Rolled</option>
+            <option >I Beam</option>
+          </select>
+             
+           </label>
+           </div>
+         <div>
+           <label>Size:<input  type="number" className="input"/></label>
+           </div>
+         <div>
+           <label>Quantity (Nos.)<input  type="number" className="input"/></label>
+           </div>
+         <div>
+           <label>Quantity (Kgs)<input  type="number" className="input"/></label>
+           </div>
+         <div>
+           <label>Total:<input  type="number" className="input"/></label>
+           </div>
+         
 
 
         <button type="submit"  className="button" >Submit</button>

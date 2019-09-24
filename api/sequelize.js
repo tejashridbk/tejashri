@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 const CategoryModel = require('./models/Category');
 const SubcategoryModel = require('./models/Subcategory');
+const ProductModel = require('./models/Product');
 
 
 const sequelize = new Sequelize('aspen1', 'root', 'tejufcbk', {
@@ -15,19 +16,19 @@ const sequelize = new Sequelize('aspen1', 'root', 'tejufcbk', {
 })
 
 const Category = CategoryModel(sequelize, Sequelize);
-const Subcategory = SubcategoryModel(sequelize, sequelize)
+const Subcategory = SubcategoryModel(sequelize, Sequelize);
+const Product = ProductModel(sequelize, Sequelize)
+
 // BlogTag will be our way of tracking relationship between Blog and Tag models
 // each Blog can have multiple tags and each Tag can have multiple blogs
-
+Category.hasMany(Subcategory);
 sequelize.sync({ force: true })
     .then(() => {
       console.log(`Database & tables created!`)
     })
 
 module.exports = {
-    Category,
-     Subcategory
+     Category,
+     Subcategory,
+     Product
 };
-
-Category.hasmany(Subcategory);
-//Subcategory.belongsto(Category);

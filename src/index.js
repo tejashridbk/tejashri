@@ -6,6 +6,9 @@ import * as serviceWorker from './serviceWorker';
 import Subcategory from './components/Subcategory';
 import Product from './components/Product';
 import Category from './components/Category';
+import Enquiry from './components/Enquiry';
+
+
 
 import './form.css';
 import './App.css';
@@ -15,7 +18,8 @@ ReactDOM.render( <Router>
     <Route path="/Subcategory" component={Subcategory}/>
     <Route path="/Product" component={Product}/>
     <Route path="/Category" component={Category}/>
-    
+    <Route path="/Enquiry" component={Enquiry}/>
+
     
 
 </Router>, document.getElementById('root'));
