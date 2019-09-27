@@ -1,12 +1,16 @@
 module.exports = (sequelize, type) => {
     return sequelize.define( 'Product', {
-       
+        id: {
+            type: type.INTEGER,
+            primaryKey: true,
+            autoIncrement: true
+        },
         code: {
             type: type.STRING,
             unique: true
         },
         name: {
-            type: type.STRING,
+            type: type.STRING
         },
         
         gstn: {

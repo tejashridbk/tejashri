@@ -1,12 +1,12 @@
 module.exports = (sequelize, type) => {
-    return sequelize.define( 'category', {
+    return sequelize.define( 'Category', {
         id: {
             type: type.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },
         code: {
-            type: type.STRING,
+            type: type.INTEGER,
             unique: true
         },
         name: {

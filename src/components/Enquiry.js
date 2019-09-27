@@ -2,19 +2,24 @@ import React, {Component} from 'react';
 import axios from "axios";
 
 const initialState = {
-  code: "",
-  name: "",
-  nameError: "",
-  idError: "",
-  codeError: "",
-  common_name: "",
-  common_nameError: "",
-  gstn: "",
-  gstnError: ""
+  address: "",
+  phone: "",
+  emailid: "",
+  partyname: "",
+  partyaddress: "",
+  quantity: "",
+  date: "",
+  category: "",
+  subcategory: "",
+  size: "",
+  quantity_no: "",
+  quantity_kg: "",
+  total: ""
 };
 
-export default class ValiationForm extends React.Component {
-  state = initialState;
+export default class ValiationForm extends Component {
+  state = {initialState: {} } 
+
 
   handleChange = event => {
     const isCheckbox = event.target.type === "checkbox";
@@ -23,46 +28,16 @@ export default class ValiationForm extends React.Component {
         ? event.target.checked
         : event.target.value
     });
+    //console.log(this.state);
   };
 
-  validate = () => {
-    let codeError = "";
-    let nameError = "";
-    let common_nameError = "";
-    let gstnError = "";
-    
-    
-    
-    
-     if (!this.state.code) {
-       codeError = "Code cannot be blank";
-     }
-    
-     if (!this.state.name) {
-       nameError = "name cannot be blank";
-     }
-    
-     if (!this.state.common_name) {
-       common_nameError = "Common name cannot be blank";
-     }
-    
-     if (!this.state.gstn) {
-       gstnError = "GSTN cannot be blank";
-     }
-
-    if ( nameError || codeError || common_nameError || gstnError) {
-       this.setState({ nameError,codeError,common_nameError,gstnError });
-       return false;
-     }
-
-    return true;
-  };
-
+  
   handleSubmit = event => {
     event.preventDefault();
-    const isValid = this.validate();
-    if (isValid) {
-      axios.post('http://localhost:5000/addCategory', this.state)
+    //const isValid = this.validate();
+    //if (isValid) {
+      console.log(this.state);
+      axios.post('http://localhost:5000/addEnquiry', this.state)
           .then(function (response) {
             console.log(response);
           })
@@ -71,65 +46,75 @@ export default class ValiationForm extends React.Component {
           });
       // clear form
       this.setState(initialState);
-    }
+    //}
   };
 
   render() {
     return (
-      
+      //<body className="body">
       <div className="container">
       <form onSubmit={this.handleSubmit}>
         <h1>Enquiry Form</h1>
          <div> 
-           <label> Address:<input  type="text" className="input"/></label>
+           address:<input name="address" type="text" className="input" value={this.state.address}
+            onChange={this.handleChange}/>
          </div>
          <div>
-           <label>phone no.:<input  type="number" className="input"/></label>
+           phone:<input name="phone" type="number" className="input" value={this.state.phone}
+            onChange={this.handleChange}/>
            </div>
            <div>
-           <label>EmailId:<input  type="Email" className="input"/></label>
+           emailid:<input name="emailid" type="Email" className="input" value={this.state.emailid}
+            onChange={this.handleChange}/>
            </div>
          <div>
-           <label>Party Name:<input  type="text" className="input"/></label>
+           partyname:<input name="partyname" type="text" className="input" value={this.state.partyname}
+            onChange={this.handleChange}/>
            </div>
          <div>
-           <label>Party Address :<input  type="text" className="input"/></label>
+           partyaddress:<input name="partyaddress" type="text" className="input" value={this.state.partyaddress}
+            onChange={this.handleChange}/>
            </div>
          <div>
-           <label>Qtn no.:<input  type="number" className="input"/></label>
+           quantity:<input name="quantity" type="number" className="input" value={this.state.quantity}
+            onChange={this.handleChange}/>
            </div>
          <div>
-           <label>Date:<input  type="date" className="input"/></label>
+           date:<input name="date" type="date" className="input" value={this.state.date}
+            onChange={this.handleChange}/>
            </div>
          <div >
-           <label>Category: 
-           <select classname="teju">
+           category: 
+           <select name="category" type="text" onChange={this.handleChange} value={this.state.category} >
             <option >Channel</option>
             <option >Joist Beam</option>
           </select>
              
-             </label>
            </div>
          <div >
-           <label >Subcategory:
-           <select >
+           subcategory:
+           <select name="subcategory" type="text" onChange={this.handleChange} value={this.state.subcategory} >
             <option >Re Rolled</option>
             <option >I Beam</option>
           </select>
              
-           </label>
+           
            </div>
          <div>
-           <label>Size:<input  type="number" className="input"/></label>
+           size:<input name="size" type="number" className="input" value={this.state.size}
+            onChange={this.handleChange}/>
            </div>
          <div>
-           <label>Quantity (Nos.)<input  type="number" className="input"/></label>
+           quantity_no<input name="quantity_no"  type="number" className="input" value={this.state.quantity_no}
+            onChange={this.handleChange}/>
            </div>
          <div>
-           <label>Quantity (Kgs)<input  type="number" className="input"/></label>
+           quantity_kg<input name="quantity_kg" type="number" className="input" value={this.state.quantity_kg}
+            onChange={this.handleChange}/>
            </div>
          <div>
-           <label>Total:<input  type="number" className="input"/></label>
+           total:<input name="total" type="number" className="input" value={this.state.total}
+            onChange={this.handleChange}/>
            </div>
          
 
@@ -137,6 +122,7 @@ export default class ValiationForm extends React.Component {
         <button type="submit"  className="button" >Submit</button>
       </form>
       </div>
+      //</body>
     );
   }
 }

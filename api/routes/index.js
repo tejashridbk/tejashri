@@ -3,7 +3,7 @@ const router = express.Router();
 const { Category } = require('../sequelize')
 const { Subcategory } = require('../sequelize')
 const { Product } = require('../sequelize')
-
+const { Enquiry }  = require('../sequelize')
 
 // const Todo = require('../models/todo');
 
@@ -14,7 +14,6 @@ router.get('/todos', (req, res, next) => {
 });
 
 router.post('/addCategory', (req, res) => {
-    console.log(req.body);
     if(req.body) {
         Category.create(req.body)
             .then(Category => res.json(Category));
@@ -26,7 +25,6 @@ router.post('/addCategory', (req, res) => {
 });
 
 router.post('/addSubcategory', (req, res) => {
-    console.log(req.body);
     if(req.body) {
         Subcategory.create(req.body)
             .then(Subcategory => res.json(Subcategory));
@@ -38,7 +36,6 @@ router.post('/addSubcategory', (req, res) => {
 });
 
 router.post('/addProduct', (req, res) => {
-    console.log(req.body);
     if(req.body) {
         Product.create(req.body)
             .then(Product => res.json(Product));
@@ -47,9 +44,23 @@ router.post('/addProduct', (req, res) => {
             error: "The input field is empty"
         })
     }
+}); 
+
+router.post('/addEnquiry',(req, res) => {
+    if(req.body) {
+        Enquiry.create(req.body)
+            .then(Enquiry => res.json(Enquiry));
+    } else {
+        res.json({
+            error: "The input field is empty"
+        })
+    }  
+ });
+
+ router.get('/category', (req, res) => {
+     res.send('Hello');
+    // category.findAll().success(category => res.send("hello"));
 });
-
-
 
 router.delete('/todos/:id', (req, res, next) => {
     // Todo.findOneAndDelete({"_id": req.params.id})

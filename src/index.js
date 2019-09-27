@@ -7,9 +7,7 @@ import Subcategory from './components/Subcategory';
 import Product from './components/Product';
 import Category from './components/Category';
 import Enquiry from './components/Enquiry';
-
-
-
+import Home from './components/Home';
 import './form.css';
 import './App.css';
 
@@ -19,6 +17,7 @@ ReactDOM.render( <Router>
     <Route path="/Product" component={Product}/>
     <Route path="/Category" component={Category}/>
     <Route path="/Enquiry" component={Enquiry}/>
+    <Route path="/Home" component={Home}/>
 
     
 

@@ -6,21 +6,17 @@ module.exports = (sequelize, type) => {
             autoIncrement: true
         },
         code: {
-            type: type.STRING,
+            type: type.INTEGER,
             unique: true
         },
         name: {
-            type: type.STRING,
+            type: type.STRING
         },
         common_name: {
             type: type.STRING
         },
         gstn: {
             type: type.STRING
-        },
-        categoryId: {
-            type: type.INTEGER,
-            foreignKey: true
         }
     })
 }

@@ -1,5 +1,6 @@
-import React, {Component} from 'react';
+import React from 'react';
 import axios from "axios";
+
 
 const initialState = {
   code: "",
@@ -12,9 +13,42 @@ const initialState = {
   gstn: "",
   gstnError: ""
 };
+ 
+const categorydata = {
+  code: "",
+  name: "",
+  //nameError: "",
+  //idError: "",
+  //codeError: "",
+  common_name: "",
+  //common_nameError: "",
+  gstn: "",
+  //gstnError: ""
+}
 
 export default class ValiationForm extends React.Component {
-  state = initialState;
+  state = { initialState: {},
+   
+    categorydata: {},
+    value: '',
+  }
+  
+  
+/*getPosts(){
+ console.log("hii");
+ axios.get('http://localhost:3000/').then( results => {
+        results.data.map((data, id) => this.state.categorydata.push({id:data.id, label:data.name}));
+    });
+}
+*/
+
+  componentDidMount() {
+    /*axios.get('http://localhost:3001/').then( results => {
+        //results.data.map((data, id) => this.state.categorydata.push({id:data.id, label:data.name}));
+        console.log(categorydata);
+    });*/
+    axios.get('http://localhost:5000/category').then(result => this.state.categorydata);   
+  }
 
   handleChange = event => {
     const isCheckbox = event.target.type === "checkbox";
@@ -74,14 +108,16 @@ export default class ValiationForm extends React.Component {
     }
   };
 
+  
+
   render() {
     return (
       <div className="container">
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} >
         <h1>Category Details</h1>
         <div>
           Code:<input
-            type="number"
+            //type="number"
             name="code"
             placeholder="code"
             value={this.state.code}
@@ -96,7 +132,7 @@ export default class ValiationForm extends React.Component {
         <div >
           Name:<input
             name="name"
-            type="text"
+           // type="text"
             placeholder="name"
             value={this.state.name}
             onChange={this.handleChange}
@@ -110,7 +146,7 @@ export default class ValiationForm extends React.Component {
         
         <div>
           Commonly Used Name:<input
-            type="text"
+           // type="text"
             name="common_name"
             placeholder="common_name"
             value={this.state.common_name}
@@ -127,6 +163,7 @@ export default class ValiationForm extends React.Component {
           GSTN:<input
             
             name="gstn"
+           // type="text"
             placeholder="gstn"
             value={this.state.gstn}
             onChange={this.handleChange}
@@ -141,7 +178,7 @@ export default class ValiationForm extends React.Component {
 
 
 
-        <button type="submit"  className="button" >Submit</button>
+        <button type="submit"  className="button"  >Submit</button>
       </form>
       </div>
     );
