@@ -4,7 +4,7 @@ const SubcategoryModel = require('./models/Subcategory');
 const ProductModel = require('./models/Product');
 const EnquiryModel = require('./models/Enquiry');
 
-const sequelize = new Sequelize('aspen1', 'root', 'tejufcbk', {
+const sequelize = new Sequelize('aspen_sales', 'root', 'root', {
   host: 'localhost',
   dialect: 'mysql',
   pool: {

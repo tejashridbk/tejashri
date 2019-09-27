@@ -15,7 +15,7 @@ const initialState = {
 
 };
 
-export default class ValiationForm extends Component {
+export default class Subcategory extends Component {
   state = initialState;
 
   handleChange = event => {

@@ -58,8 +58,7 @@ router.post('/addEnquiry',(req, res) => {
  });
 
  router.get('/category', (req, res) => {
-     res.send('Hello');
-    // category.findAll().success(category => res.send("hello"));
+    Category.findAll().then(Category => res.json(Category));
 });
 
 router.delete('/todos/:id', (req, res, next) => {

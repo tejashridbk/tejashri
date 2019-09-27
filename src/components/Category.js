@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import axios from "axios";
 
 
@@ -26,7 +26,7 @@ const categorydata = {
   //gstnError: ""
 }
 
-export default class ValiationForm extends React.Component {
+export default class Category extends Component {
   state = { initialState: {},
    
     categorydata: {},

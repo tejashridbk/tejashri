@@ -43,7 +43,7 @@ const initialState = {
  
  };
  
- export default class ValiationForm extends React.Component {
+ export default class Product extends React.Component {
    state = initialState;
  
    handleChange = event => {
