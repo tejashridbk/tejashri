@@ -7,17 +7,36 @@ import Subcategory from './components/Subcategory';
 import Product from './components/Product';
 import Category from './components/Category';
 import Enquiry from './components/Enquiry';
-import Home from './components/Home';
+import Categories from './components/Categories';
+import Subcategories from './components/Subcategories';
+import Products from './components/Products';
+import Enquiries from './components/Enquiries';
+import CreatePO from './components/CreatePO';
+import CreatePOs from './components/CreatePOs';
+
+import Quote from './components/Quote';
+import Quotes from './components/Quotes';
+
+
 import './form.css';
 import './App.css';
 
-ReactDOM.render( <Router>
-    
+ReactDOM.render( 
+<Router>
+     <Route path="/Categories" component={Categories} />
+     <Route path="/Subcategories" component={Subcategories} />
+     <Route path="/Products" component={Products} />
+     <Route path="/Enquiries" component={Enquiries} />
+     <Route path="/CreatePOs" component={CreatePOs} />
+     <Route path="/Quotes" component={Quotes} />
+
     <Route path="/Subcategory" component={Subcategory}/>
     <Route path="/Product" component={Product}/>
     <Route path="/Category" component={Category}/>
     <Route path="/Enquiry" component={Enquiry}/>
-    <Route path="/Home" component={Home}/>
+    <Route path="/CreatePO/:enquiryId"  component={CreatePO}/>
+    <Route path="/Quote/:enquiryId"  component={Quote}/>
+
 
     
 
@@ -25,5 +44,6 @@ ReactDOM.render( <Router>
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
+// Learn more about service workers: https://bit.ly/CRA-PWA       
+
 serviceWorker.unregister();

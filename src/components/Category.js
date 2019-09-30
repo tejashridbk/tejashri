@@ -14,7 +14,7 @@ const initialState = {
   gstnError: ""
 };
  
-const categorydata = {
+/*const categorydata = {
   code: "",
   name: "",
   //nameError: "",
@@ -24,30 +24,15 @@ const categorydata = {
   //common_nameError: "",
   gstn: "",
   //gstnError: ""
-}
+}*/
 
 export default class Category extends Component {
   state = { initialState: {},
-   
-    categorydata: {},
-    value: '',
   }
   
-  
-/*getPosts(){
- console.log("hii");
- axios.get('http://localhost:3000/').then( results => {
-        results.data.map((data, id) => this.state.categorydata.push({id:data.id, label:data.name}));
-    });
-}
-*/
-
   componentDidMount() {
-    /*axios.get('http://localhost:3001/').then( results => {
-        //results.data.map((data, id) => this.state.categorydata.push({id:data.id, label:data.name}));
-        console.log(categorydata);
-    });*/
-    axios.get('http://localhost:5000/category').then(result => this.state.categorydata);   
+    
+    axios.get('http://localhost:5000/Category').then(result => this.state.categorydata);   
   }
 
   handleChange = event => {
@@ -173,10 +158,6 @@ export default class Category extends Component {
             {this.state.gstnError}
           </div>
         </div>
-
-
-
-
 
         <button type="submit"  className="button"  >Submit</button>
       </form>

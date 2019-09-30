@@ -3,9 +3,6 @@ import axios from 'axios';
 
 const initialState = {
   
-
-
-    
     code: "",
     name: "",
     gstn: "",
@@ -44,8 +41,14 @@ const initialState = {
  };
  
  export default class Product extends React.Component {
-   state = initialState;
- 
+  state = { initialState: {}, }
+  
+  componentDidMount() {
+    
+    axios.get('http://localhost:5000/Product').then(result => this.state.productdata);   
+  }
+
+
    handleChange = event => {
      const isCheckbox = event.target.type === "checkbox";
      this.setState({
@@ -180,7 +183,7 @@ const initialState = {
          <div >
            code:<input
              name="code"
-             type= "number"
+             //type= "number"
              placeholder="code"
              value={this.state.code}
              onChange={this.handleChange}
@@ -194,7 +197,7 @@ const initialState = {
          <div >
            Name:<input
              name="name"
-             type= "text"
+             //type= "text"
              placeholder="name"
              value={this.state.name}
              onChange={this.handleChange}
@@ -208,7 +211,7 @@ const initialState = {
          <div >
            GSTN:<input
              name="gstn"
-             type= "text"
+            // type= "text"
              placeholder="gstn"
              value={this.state.gstn}
              onChange={this.handleChange}

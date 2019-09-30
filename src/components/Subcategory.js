@@ -4,7 +4,6 @@ const initialState = {
   code: "",
   name: "",
   nameError: "",
-  
   codeError: "",
   common_name: "",
   common_nameError: "",
@@ -16,7 +15,12 @@ const initialState = {
 };
 
 export default class Subcategory extends Component {
-  state = initialState;
+  state = { initialState: {},
+}
+  componentDidMount() {
+    
+    axios.get('http://localhost:5000/Subcategory').then(result => this.state.subcategorydata);   
+  }
 
   handleChange = event => {
     const isCheckbox = event.target.type === "checkbox";
@@ -88,7 +92,7 @@ export default class Subcategory extends Component {
         <h1>Subcategory Details</h1>
         <div>
           Code<input
-            type="number"
+            //type="number"
             name="code"
             placeholder="code"
             value={this.state.code}
@@ -116,7 +120,7 @@ export default class Subcategory extends Component {
 
         <div>
           Commonly Used Name:<input
-            type="text"
+            //type="text"
             name="common_name"
             placeholder="common_name"
             value={this.state.common_name}
@@ -131,7 +135,7 @@ export default class Subcategory extends Component {
           GSTN:<input
             
             name="gstn"
-            type="text"
+            //type="text"
             placeholder="GSTN"
             value={this.state.gstn}
             onChange={this.handleChange}

@@ -18,7 +18,12 @@ const initialState = {
 };
 
 export default class ValiationForm extends Component {
-  state = {initialState: {} } 
+  state = {initialState: {}, } 
+
+  componentDidMount() {
+    
+    axios.get('http://localhost:5000/Enquiry').then(result => this.state.enquirydata);   
+  }
 
 
   handleChange = event => {
