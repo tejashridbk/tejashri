@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import axios from "axios";
 
 
+
+
 const initialState = {
   code: "",
   name: "",
@@ -14,26 +16,18 @@ const initialState = {
   gstnError: ""
 };
  
-/*const categorydata = {
-  code: "",
-  name: "",
-  //nameError: "",
-  //idError: "",
-  //codeError: "",
-  common_name: "",
-  //common_nameError: "",
-  gstn: "",
-  //gstnError: ""
-}*/
+
 
 export default class Category extends Component {
-  state = { initialState: {},
+  state = { initialState: {}, subcategorydata: {}
   }
   
   componentDidMount() {
     
     axios.get('http://localhost:5000/Category').then(result => this.state.categorydata);   
   }
+  
+  
 
   handleChange = event => {
     const isCheckbox = event.target.type === "checkbox";
@@ -49,9 +43,6 @@ export default class Category extends Component {
     let nameError = "";
     let common_nameError = "";
     let gstnError = "";
-    
-    
-    
     
      if (!this.state.code) {
        codeError = "Code cannot be blank";
@@ -93,13 +84,28 @@ export default class Category extends Component {
     }
   };
 
+  handleSubcategory = event => {
+    //event.preventDefault();
+    axios.get('http://localhost:5000/Subcategory')
+    .then(result => this.setState({subcategorydata: result.data})); 
+      
+    };
+  
+
   
 
   render() {
+    const mystyle = {
+      color: "black",
+      //backgroundColor: "",
+      padding: "10px",
+      fontFamily: "Arial"
+    };
     return (
+      <body className="body">
       <div className="container">
       <form onSubmit={this.handleSubmit} >
-        <h1>Category Details</h1>
+        <h1 style={mystyle}>Category Details</h1>
         <div>
           Code:<input
             //type="number"
@@ -158,10 +164,13 @@ export default class Category extends Component {
             {this.state.gstnError}
           </div>
         </div>
+         
+         
 
         <button type="submit"  className="button"  >Submit</button>
       </form>
       </div>
+      </body>
     );
   }
 }

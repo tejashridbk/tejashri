@@ -17,12 +17,16 @@ const initialState = {
   total: ""
 };
 
-export default class ValiationForm extends Component {
-  state = {initialState: {}, } 
+export default class Enquiry extends Component {
+  state = {initialState: {}, categorydata: [] , subcategorydata: [] } 
 
   componentDidMount() {
+    //axios.get('http://localhost:5000/Enquiry').then(result => this.state.enquirydata);
+    axios.get('http://localhost:5000/Category')
+    .then(result => this.setState({categorydata: result.data})); 
+
     
-    axios.get('http://localhost:5000/Enquiry').then(result => this.state.enquirydata);   
+   
   }
 
 
@@ -54,12 +58,23 @@ export default class ValiationForm extends Component {
     //}
   };
 
+  handleSubcat = event => {
+    axios.get('http://localhost:5000/Subcat?categoryId='+event.target.value )
+    .then(result => this.setState({subcategorydata: result.data})); 
+    //console.log(result);
+    //console.log(this.state.subcategorydata);
+      
+    };
+
   render() {
+    console.log(this.state.subcategorydata);
     return (
       //<body className="body">
+      <div className="body">
       <div className="container">
       <form onSubmit={this.handleSubmit}>
         <h1>Enquiry Form</h1>
+        
          <div> 
            address:<input name="address" type="text" className="input" value={this.state.address}
             onChange={this.handleChange}/>
@@ -88,23 +103,7 @@ export default class ValiationForm extends Component {
            date:<input name="date" type="date" className="input" value={this.state.date}
             onChange={this.handleChange}/>
            </div>
-         <div >
-           category: 
-           <select name="category" type="text" onChange={this.handleChange} value={this.state.category} >
-            <option >Channel</option>
-            <option >Joist Beam</option>
-          </select>
-             
-           </div>
-         <div >
-           subcategory:
-           <select name="subcategory" type="text" onChange={this.handleChange} value={this.state.subcategory} >
-            <option >Re Rolled</option>
-            <option >I Beam</option>
-          </select>
-             
-           
-           </div>
+         
          <div>
            size:<input name="size" type="number" className="input" value={this.state.size}
             onChange={this.handleChange}/>
@@ -121,13 +120,34 @@ export default class ValiationForm extends Component {
            total:<input name="total" type="number" className="input" value={this.state.total}
             onChange={this.handleChange}/>
            </div>
-         
+             <div> Category:
+             <select name="category" type="text" onChange={this.handleSubcat} value={this.state.category}>
+               <option value=''>Select</option>
+             {this.state.categorydata.length && this.state.categorydata.map( (category) => {
+               //console.log(category);
+                return (
+                <option key={category.id} value={category.id} >{category.name}</option> );
+             })}
+            </select>
+             </div>
 
+             <div> Subcategory:
+             <select name="subcategory" type="text" onChange={this.handleSubcat} value={this.state.subcategory}>
+             {this.state.subcategorydata.length && this.state.subcategorydata.map( (subcategory) => {
+              // console.log(subcategorydata);
+                return (
+                <option key={subcategory.id} value={subcategory.id}>{subcategory.name}</option> );
+             })}
+            </select>
+             </div>
 
+             
+             
+    
         <button type="submit"  className="button" >Submit</button>
       </form>
       </div>
-      //</body>
+      </div>
     );
   }
 }

@@ -54,8 +54,8 @@ export default class ValiationForm extends Component {
 
   render() {
       console.log(this.state);
-      {return (
-      
+      return (
+        <body className="body">
       <div className="container">
       <form onSubmit={this.handleSubmit}>
         <h1>Quote</h1>
@@ -70,7 +70,7 @@ export default class ValiationForm extends Component {
         <div> Subcategory: <label>{this.state.enquirydata && this.state.enquirydata.subcategory}</label></div>
         <div> Size: <label>{this.state.enquirydata && this.state.enquirydata.size}</label></div>
         <div> Quantity(in No.): <label>{this.state.enquirydata && this.state.enquirydata.quantity_no}</label></div>
-        <div> Quantity(in Kg.): <label>{this.state.enquirydata && this.state.enquirydata.address}</label></div>
+        <div> Quantity(in Kg.): <label>{this.state.enquirydata && this.state.enquirydata.quantity_kg}</label></div>
         <div> Total: <label>{this.state.enquirydata && this.state.enquirydata.total}</label></div>
 
         <div>
@@ -102,15 +102,13 @@ export default class ValiationForm extends Component {
             onChange={this.handleChange}/>
            </div>
          
-
-
         <button type="submit"  className="button" >Submit</button>
       </form>
       </div>
-      //</body>
+      </body>
     );
     }
-  }
+  
 }
 
 

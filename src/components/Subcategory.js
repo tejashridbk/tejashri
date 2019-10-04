@@ -9,17 +9,19 @@ const initialState = {
   common_nameError: "",
   gstn: "",
   gstnError: "",
-  categoryId: "",
-  categoryIdError: ""
+  //categoryId: "",
+  //categoryIdError: ""
 
 };
 
 export default class Subcategory extends Component {
-  state = { initialState: {},
+  state = { initialState: {}, categorydata: []
 }
   componentDidMount() {
     
-    axios.get('http://localhost:5000/Subcategory').then(result => this.state.subcategorydata);   
+    //axios.get('http://localhost:5000/Subcategory').then(result => this.state.subcategorydata);   
+    axios.get('http://localhost:5000/Category')
+    .then(result => this.setState({categorydata: result.data})); 
   }
 
   handleChange = event => {
@@ -37,7 +39,7 @@ export default class Subcategory extends Component {
     let nameError = "";
     let common_nameError = "";
     let gstnError = "";
-    let categoryIdError ="";
+    //let categoryIdError ="";
     
     if (!this.state.code) {
       codeError = "Code cannot be blank";
@@ -56,12 +58,10 @@ export default class Subcategory extends Component {
       gstnError = "GSTN cannot be blank";
     }
 
-    if (!this.state.categoryId) {
-        categoryIdError = "Cateogryids  cannot be blank";
-      }
+   
 
-    if (  codeError || nameError || common_nameError || gstnError || categoryIdError) {
-      this.setState({ codeError,nameError,common_nameError,gstnError,categoryIdError });
+    if (  codeError || nameError || common_nameError || gstnError ) {
+      this.setState({ codeError,nameError,common_nameError,gstnError });
       return false;
     }
 
@@ -87,6 +87,7 @@ export default class Subcategory extends Component {
 
   render() {
     return (
+      <body className="body">
       <div className="container">
       <form onSubmit={this.handleSubmit}>
         <h1>Subcategory Details</h1>
@@ -145,24 +146,27 @@ export default class Subcategory extends Component {
             {this.state.gstnError}
           </div>
 
+
+          <div> Category:
+             <select name="category" type="text" onChange={this.handleChange} value={this.state.category}>
+             {this.state.categorydata.length && this.state.categorydata.map( (category) => {
+               //console.log(category);
+                return (
+                  
+                <option key={category.id} value={category.name}>{category.name}</option> );
+             })}
+            </select>
+             </div>
           
-        <div>
-          CategoryId<input
-            type="number"
-            name="categoryId"
-            placeholder="categoryId"
-            value={this.state.categoryId}
-            onChange={this.handleChange}
-            className="input"
-          />
-          <div style={{ fontSize: 12, color: "red" }}>
-            {this.state.categoryIdError}
-          </div>
+        
+       
         </div>
-        </div>
+
+        
         <button type="submit"  className="button" >Submit</button>
       </form>
       </div>
+      </body>
     );
   }
 }

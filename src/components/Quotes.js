@@ -43,6 +43,7 @@ export default class CreatePOs extends React.Component {
                     <td>{quote.taxablevalue}</td>
                     <td>{quote.gst}</td>
                     <td>{quote.totalestimation}</td>
+                    
                  
                 </tr>
                 );

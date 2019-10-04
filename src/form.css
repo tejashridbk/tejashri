@@ -2,25 +2,31 @@
     display: flex;
     justify-content: center;
     width: 500px;
-    background-color:#f2fcda; 
+    
     text-align: left;
     align-items: center;
     margin-left: 500px;
-    margin-top: 100px;
+    margin-top: 0px;
     border-style: solid;
     border-width: 2px;
    
+  }
+  .body{
+    
+    background-image: url("bg6.jpg");
+    height: 575px;
   }
   .input { 
       width: 100%;
       padding: 12px 20px;
       margin: 8px 0;
       box-sizing: border-box;
+      border-radius: 25px;
 }
 
 .button {
     position: relative;
-    background-color: #4CAF50;
+    background-color: rgb(16, 144, 220);
     border: none;
     font-size: 28px;
     color: #FFFFFF;
@@ -69,10 +75,11 @@
 
 
   table {  
-    color: rgb(102, 7, 146); /* Lighten up font color */
+    color: rgb(250, 251, 252); /* Lighten up font color */
     font-family: Helvetica, Arial, sans-serif; /* Nicer font */
-    width: px; 
-    
+   width: 100px;
+   background-image: url("bg6.jpg");
+    align-self: center;
     border-spacing: 1; 
     
 }

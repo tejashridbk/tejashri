@@ -24,7 +24,8 @@ const Enquiry = EnquiryModel(sequelize, Sequelize)
 const CreatePO = CreatePOModel(sequelize, Sequelize)
 const Quote = QuoteModel(sequelize, Sequelize)
 
-Category.hasMany(Subcategory);
+Subcategory.belongsTo(Category);
+//Category.hasMany(Subcategory);
 //Category.hasMany(Product);
 Subcategory.hasMany(Product);
 Product.hasMany(Enquiry);

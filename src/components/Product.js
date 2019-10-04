@@ -175,6 +175,7 @@ const initialState = {
  
    render() {
      return (
+      <body className="body">
        <div className="container">
        <form onSubmit={this.handleSubmit}>
          <h1>Product Details</h1>
@@ -399,6 +400,7 @@ const initialState = {
          <button type="submit"  className="button" >Submit</button>
        </form>
        </div>
+       </body>
      );
    }
  }

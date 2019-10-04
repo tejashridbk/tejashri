@@ -52,7 +52,7 @@ export default class CreatePO extends Component {
   render() {
       console.log(this.state);
       {return (
-      
+        <body className="body">
       <div className="container">
       <form onSubmit={this.handleSubmit}>
         <h1>Purchase Order</h1>
@@ -97,7 +97,7 @@ export default class CreatePO extends Component {
         <button type="submit"  className="button" >Submit</button>
       </form>
       </div>
-      //</body>
+      </body>
     );
     }
   }

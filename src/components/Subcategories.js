@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export default class Subcategories extends React.Component {
     state = {
-        subcategorydata: {}
+        subcategorydata: {} 
     }
 
     componentDidMount() {
@@ -24,6 +24,7 @@ export default class Subcategories extends React.Component {
                 <td>Name</td>
                 <td>Common Name</td>
                 <td>GSTN</td>
+                <td> Category</td>
 
             </tr>
             {subcategoryData.map( (subcategory) => {
@@ -35,10 +36,12 @@ export default class Subcategories extends React.Component {
                     <td>{subcategory.name}</td>
                     <td>{subcategory.common_name}</td>
                     <td>{subcategory.gstn}</td>
+                    <td>{subcategory.category}</td>
+                    
                 </tr>);
             })}
              <button >
-             <button  > <a href="http://localhost:3001/Subcategory" onclick="console.log('The link was clicked.'); return false">
+             <button  > <a href="http://localhost:3001/Subcategory" >
                 Add Subcategory
                 </a> </button>
              </button>

@@ -122,7 +122,21 @@ router.get('/getEnquiries', (req, res) => {
     }).then( Enquiry=> res.json(Enquiry))
 }); 
 
+router.get('/Subcat', (req, res) => {
+   /* Subcategory.findAll({
+        where: {categoryId: req.query.categoryId}
+    }).then( Subcategory => res.json(Subcategory))*/
 
+    Subcategory.findAll({
+        include: [{
+          model: Category,
+          as: 'category_id',
+          where: {id: req.query.categoryId}
+        }]
+      })
+      .then(Subcategory => res.json(Subcategory))
+      .catch(console.error)
+});
 
 
 
