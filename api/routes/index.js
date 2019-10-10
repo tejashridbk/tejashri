@@ -49,7 +49,7 @@ router.post('/addProduct', (req, res) => {
             error: "The input field is empty"
         })
     }
-}); 
+});
 
 router.post('/addEnquiry',(req, res) => {
     if(req.body) {
@@ -59,7 +59,7 @@ router.post('/addEnquiry',(req, res) => {
         res.json({
             error: "The input field is empty"
         })
-    }  
+    }
  });
 
  router.post('/addQuote', (req, res) => {
@@ -113,14 +113,14 @@ router.get('/getEnquiry', (req, res) => {
     Enquiry.findOne({
         where: {id: req.query.enquiryId}
     }).then( Enquiry=> res.json(Enquiry))
-});     
+});
 
 router.get('/getEnquiries', (req, res) => {
 
     Enquiry.findOne({
         where: {id: req.query.enquiryId}
     }).then( Enquiry=> res.json(Enquiry))
-}); 
+});
 
 router.get('/Subcat', (req, res) => {
    /* Subcategory.findAll({
@@ -130,8 +130,8 @@ router.get('/Subcat', (req, res) => {
     Subcategory.findAll({
         include: [{
           model: Category,
-          as: 'CategoryId',
-          where: {id: req.query.CategoryId}
+          as: 'categories',
+          where: {id: req.query.categoryId}
         }]
       })
       .then(Subcategory => res.json(Subcategory))

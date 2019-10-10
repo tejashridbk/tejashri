@@ -6,7 +6,7 @@ const EnquiryModel = require('./models/Enquiry');
 const CreatePOModel = require('./models/CreatePO');
 const QuoteModel = require('./models/Quote');
 
-const sequelize = new Sequelize('aspen1', 'root', 'tejufcbk', {
+const sequelize = new Sequelize('aspen_sales', 'root', 'root', {
   host: 'localhost',
   dialect: 'mysql',
   pool: {
@@ -24,7 +24,7 @@ const Enquiry = EnquiryModel(sequelize, Sequelize)
 const CreatePO = CreatePOModel(sequelize, Sequelize)
 const Quote = QuoteModel(sequelize, Sequelize)
 
-Subcategory.belongsTo(Category);
+Subcategory.belongsTo(Category, {as: 'categories'});
 //Category.hasMany(Subcategory);
 //Category.hasMany(Product);
 Subcategory.hasMany(Product);
@@ -35,7 +35,7 @@ Quote.hasMany(CreatePO);
 
 // BlogTag will be our way of tracking relationship between Blog and Tag models
 // each Blog can have multiple tags and each Tag can have multiple blogs
-sequelize.sync({ force: true })
+sequelize.sync({ force: false })
     .then(() => {
       console.log(`Database & tables created!`)
     })
@@ -47,5 +47,5 @@ module.exports = {
      Enquiry,
      CreatePO,
      Quote
-     
+
   };
