@@ -90,7 +90,37 @@ router.post('/addCreatePO', (req, res) => {
 });
 
 router.get('/Subcategory', (req, res) => {
-    Subcategory.findAll().then( Subcategory=> res.json(Subcategory));
+    Subcategory.findAll({
+        include: [
+          {
+            model: Category,
+            as: 'categories'
+          }
+        ]
+      }).then( subcategories => {
+          //res.json(Subcategory);      const resObj = users.map(user => {
+
+        //tidy up the user data
+        const resObj = subcategories.map(Subcategory => {
+
+        return Object.assign(
+            {},
+            {
+              code: Subcategory.code,
+             name: Subcategory.name,
+              common_name: Subcategory.common_name,
+              gstn: Subcategory.gstn,
+              category: {
+                name : Subcategory.categories.name,
+                //code : Subcategory.categories.code
+              }
+            }
+          )
+
+      });
+      res.json(resObj);
+    })
+      
 });
 
 router.get('/Product', (req, res) => {

@@ -18,6 +18,7 @@ const initialState = {
     grade_specs: "",
     brandname: "",
     outer_diameter: "",
+    total: "",
  
     
     codeError: "",
@@ -34,18 +35,23 @@ const initialState = {
     common_nameError: "",
     grade_specsError: "",
     brandnameError: "",
-    outer_diameterError: ""
- 
+    outer_diameterError: "",
+    totalError: "",
+
  
  
  };
  
  export default class Product extends React.Component {
-  state = { initialState: {}, }
+  state = { initialState: {},categorydata: [] , subcategorydata: [] }
   
   componentDidMount() {
     
-    axios.get('http://localhost:5000/Product').then(result => this.state.productdata);   
+    axios.get('http://localhost:5000/Product').then(result => this.state.productdata); 
+    axios.get('http://localhost:5000/Category')
+    .then(result => this.setState({categorydata: result.data})); 
+
+    
   }
 
 
@@ -77,7 +83,8 @@ const initialState = {
      let  grade_specsError= "";
      let brandnameError= "";
      let outer_diameterError= "";
- 
+     let totalError= "";
+
      
      if (!this.state.code) {
        codeError = "code cannot be blank";
@@ -139,6 +146,10 @@ const initialState = {
      if (!this.state.outer_diameter) {
        outer_diameterError = "outer_diameter cannot be blank";
      }
+
+     if (!this.state.total) {
+      totalError = "total cannot be blank";
+    }
  
  
  
@@ -146,10 +157,10 @@ const initialState = {
      
      if (codeError || nameError || gstnError || flange1Error || flange2Error || flange3Error||
         weight_per_meterError || thicknessError || widthError || lengthError || descriptionError || 
-        common_nameError || grade_specsError || brandnameError || outer_diameterError) {
+        common_nameError || grade_specsError || brandnameError || outer_diameterError || totalError) {
        this.setState({ codeError , nameError , gstnError , flange1Error , flange2Error , flange3Error ,
          weight_per_meterError , thicknessError , widthError , lengthError , descriptionError , 
-         common_nameError , grade_specsError , brandnameError , outer_diameterError });
+         common_nameError , grade_specsError , brandnameError , outer_diameterError , totalError });
        return false;
      }
  
@@ -172,6 +183,15 @@ const initialState = {
        this.setState(initialState);
      }
    };
+
+   handleSubcat = event => {
+    axios.get('http://localhost:5000/Subcat?categoryId='+event.target.value )
+    .then(result => this.setState({subcategorydata: result.data})); 
+    //console.log(result);
+    console.log(this.state.subcategorydata);
+      
+    };
+
  
    render() {
      return (
@@ -390,7 +410,40 @@ const initialState = {
            {this.state.outer_diameterError}
          </div>
        </div>
- 
+
+       <div >
+         Total:<input
+           name="total"
+           type= "number"
+           placeholder="total"
+           value={this.state.total}
+           onChange={this.handleChange}
+           className="input"
+         />
+         <div style={{ fontSize: 12, color: "red" }}>
+           {this.state.totalError}
+         </div>
+       </div>
+             <div> Category:
+             <select name="categoriesId" type="text" onChange={this.handleSubcat} value={this.state.categoriesId}>
+               <option value=''>Select</option>
+             {this.state.categorydata.length && this.state.categorydata.map( (category) => {
+               //console.log(category);
+                return (
+                <option key={category.id} value={category.id} >{category.name}</option> );
+             })}
+            </select>
+             </div>
+
+             <div> Subcategory:
+             <select name="SubcategoryId" type="text" onChange={this.handleChange} value={this.state.SubcategoryId}>
+             {this.state.subcategorydata.length && this.state.subcategorydata.map( (subcategory) => {
+              // console.log(subcategorydata);
+                return (
+                <option key={subcategory.id} value={subcategory.id}>{subcategory.name}</option> );
+             })}
+            </select>
+             </div>
  
          
  

@@ -36,6 +36,11 @@ export default class Products extends React.Component {
                     <td>Grade Specs.</td>
                     <td>Brandname</td>
                     <td>Outer Diameter</td>
+                    <td>Total</td>
+                    <td>Category</td>
+                    <td>Subcategory</td>
+
+
 
             </tr>
             {productData.map( (product) => {
@@ -58,6 +63,10 @@ export default class Products extends React.Component {
                     <td>{product.grade_specs}</td>
                     <td>{product.brandname}</td>
                     <td>{product.outer_diameter}</td>
+                    <td>{product.total}</td>
+
+                    <td>{product.categoriesId}</td>
+                    <td>{product.SubcategoryId}</td>
 
                 </tr>);
             })

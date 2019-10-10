@@ -41,15 +41,7 @@ module.exports = (sequelize, type) => {
         total: {
             type: type.INTEGER
 
-        },
-        category: {
-            type: type.STRING
-        },
-        subcategory: {
-            type: type.STRING
         }
-
-
     })
 }
 

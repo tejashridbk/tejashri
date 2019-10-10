@@ -121,7 +121,7 @@ export default class Enquiry extends Component {
             onChange={this.handleChange}/>
            </div>
              <div> Category:
-             <select name="category" type="text" onChange={this.handleSubcat} value={this.state.category}>
+             <select name="categoriesId" type="text" onChange={this.handleSubcat} value={this.state.categoriesId}>
                <option value=''>Select</option>
              {this.state.categorydata.length && this.state.categorydata.map( (category) => {
                //console.log(category);

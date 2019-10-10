@@ -63,6 +63,9 @@ module.exports = (sequelize, type) => {
         outer_diameter: {
            
             type: type.DOUBLE
+        },
+        total: {
+            type: type.INTEGER
         }
 
         

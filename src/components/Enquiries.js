@@ -53,7 +53,7 @@ export default class Enquiries extends React.Component {
                     <td>{enquiry.partyaddress}</td>
                     <td>{enquiry.quantity}</td>
                     <td>{enquiry.date}</td>
-                    <td>{enquiry.category}</td>
+                    <td>{enquiry.categoriesId}</td>
                     <td>{enquiry.subcategory}</td>
                     <td>{enquiry.size}</td>
                     <td>{enquiry.quantity_no}</td>

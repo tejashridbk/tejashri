@@ -23,6 +23,7 @@ export default class Subcategory extends Component {
     axios.get('http://localhost:5000/Category')
     .then(result => this.setState({categorydata: result.data})); 
     //console.log(categorydata);
+    
   }
 
   handleChange = event => {
@@ -86,7 +87,19 @@ export default class Subcategory extends Component {
       // clear form
       this.setState(initialState);
     }
+    
   };
+
+  
+  handleSubcatlist = event => {
+    axios.get('http://localhost:5000/Subcat?categoryId='+event.target.value )
+    .then(result => this.setState({subcategorydata: result.data})); 
+    //console.log(result);
+    console.log(this.state.subcategorydata);
+      
+    };
+
+
 
   render() {
     return (
@@ -151,11 +164,11 @@ export default class Subcategory extends Component {
 
 
           <div> Category:
-             <select name="CategoryId" type="text" onChange={this.handleChange} value={this.state.CategoryId}>
+             <select name="categoriesId" type="text" onChange={this.handleSubcatlist} value={this.state.categoriesId}>
              <option value=''>Select</option>
 
              {this.state.categorydata.length && this.state.categorydata.map( (category) => {
-               //console.log(category);
+               //console.log(category); 
                 return (
                   
                 <option key={category.id} value={category.id}>{category.name}</option> );
