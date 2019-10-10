@@ -16,8 +16,10 @@ module.exports = (sequelize, type) => {
             type: type.STRING
         },
         gstn: {
-            type: type.STRING
+            type: type.INTEGER
         }
+        
+        
     })
 }
 

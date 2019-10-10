@@ -62,7 +62,7 @@ export default class Enquiry extends Component {
     axios.get('http://localhost:5000/Subcat?categoryId='+event.target.value )
     .then(result => this.setState({subcategorydata: result.data})); 
     //console.log(result);
-    //console.log(this.state.subcategorydata);
+    console.log(this.state.subcategorydata);
       
     };
 
@@ -132,7 +132,7 @@ export default class Enquiry extends Component {
              </div>
 
              <div> Subcategory:
-             <select name="subcategory" type="text" onChange={this.handleSubcat} value={this.state.subcategory}>
+             <select name="subcategory" type="text" onChange={this.handleChange} value={this.state.subcategory}>
              {this.state.subcategorydata.length && this.state.subcategorydata.map( (subcategory) => {
               // console.log(subcategorydata);
                 return (

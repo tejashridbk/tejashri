@@ -28,12 +28,6 @@ module.exports = (sequelize, type) => {
         date: {
             type: type.DATE
         },
-        category: {
-            type: type.STRING
-        },
-        subcategory: {
-            type: type.STRING
-        },
         size: {
             type: type.INTEGER
         },
@@ -47,6 +41,12 @@ module.exports = (sequelize, type) => {
         total: {
             type: type.INTEGER
 
+        },
+        category: {
+            type: type.STRING
+        },
+        subcategory: {
+            type: type.STRING
         }
 
 

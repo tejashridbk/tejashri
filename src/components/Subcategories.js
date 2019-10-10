@@ -3,14 +3,19 @@ import axios from 'axios';
 
 export default class Subcategories extends React.Component {
     state = {
-        subcategorydata: {} 
+        subcategorydata: {} , categorydata: {}
     }
 
     componentDidMount() {
         axios.get('http://localhost:5000/Subcategory').then( results => {
             this.setState({subcategorydata: results});
+            //console.log(results);
+
         });
+
     }
+
+
     
     render() {
             var subcategoryData= this.state.subcategorydata.data;
@@ -36,7 +41,8 @@ export default class Subcategories extends React.Component {
                     <td>{subcategory.name}</td>
                     <td>{subcategory.common_name}</td>
                     <td>{subcategory.gstn}</td>
-                    <td>{subcategory.category}</td>
+                    <td>{subcategory.CategoryId}</td>
+                   
                     
                 </tr>);
             })}

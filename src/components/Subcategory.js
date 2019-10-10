@@ -22,6 +22,7 @@ export default class Subcategory extends Component {
     //axios.get('http://localhost:5000/Subcategory').then(result => this.state.subcategorydata);   
     axios.get('http://localhost:5000/Category')
     .then(result => this.setState({categorydata: result.data})); 
+    //console.log(categorydata);
   }
 
   handleChange = event => {
@@ -31,6 +32,8 @@ export default class Subcategory extends Component {
         ? event.target.checked
         : event.target.value
     });
+    
+
   };
 
   validate = () => {
@@ -148,12 +151,14 @@ export default class Subcategory extends Component {
 
 
           <div> Category:
-             <select name="category" type="text" onChange={this.handleChange} value={this.state.category}>
+             <select name="CategoryId" type="text" onChange={this.handleChange} value={this.state.CategoryId}>
+             <option value=''>Select</option>
+
              {this.state.categorydata.length && this.state.categorydata.map( (category) => {
                //console.log(category);
                 return (
                   
-                <option key={category.id} value={category.name}>{category.name}</option> );
+                <option key={category.id} value={category.id}>{category.name}</option> );
              })}
             </select>
              </div>
