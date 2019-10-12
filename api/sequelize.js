@@ -24,8 +24,11 @@ const Enquiry = EnquiryModel(sequelize, Sequelize)
 const CreatePO = CreatePOModel(sequelize, Sequelize)
 const Quote = QuoteModel(sequelize, Sequelize)
 
-Subcategory.belongsTo(Category, {as: 'categories'});
-Subcategory.hasMany(Product);
+Subcategory.belongsTo(Category, {as: 'Category'});
+//Subcategory.hasMany(Product);
+//Category.hasMany(Subcategory, {as: 'Category'});
+
+Product.belongsTo(Subcategory, {as: 'Subcategory'});
 Product.hasMany(Enquiry);
 Enquiry.hasMany(Quote);
 Quote.hasMany(CreatePO);
@@ -33,7 +36,7 @@ Quote.hasMany(CreatePO);
 
 // BlogTag will be our way of tracking relationship between Blog and Tag models
 // each Blog can have multiple tags and each Tag can have multiple blogs
-sequelize.sync({ force: true })
+sequelize.sync({ force: false })
     .then(() => {
       console.log(`Database & tables created!`)
     })

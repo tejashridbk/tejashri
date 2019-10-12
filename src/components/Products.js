@@ -37,8 +37,9 @@ export default class Products extends React.Component {
                     <td>Brandname</td>
                     <td>Outer Diameter</td>
                     <td>Total</td>
-                    <td>Category</td>
+                    
                     <td>Subcategory</td>
+                    <td>Category</td>
 
 
 
@@ -65,14 +66,16 @@ export default class Products extends React.Component {
                     <td>{product.outer_diameter}</td>
                     <td>{product.total}</td>
 
-                    <td>{product.categoriesId}</td>
-                    <td>{product.SubcategoryId}</td>
+                   
+                    
+                    <td>{product.Subcategory.name}</td>
+                    
 
                 </tr>);
             })
             }
              
-             <button> <a href="http://localhost:3001/Product" onclick="console.log('The link is clicked'); return false">
+             <button> <a href="http://localhost:3001/Product" >
                 Add Product
                 </a> </button>
              

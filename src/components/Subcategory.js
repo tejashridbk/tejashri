@@ -164,7 +164,7 @@ export default class Subcategory extends Component {
 
 
           <div> Category:
-             <select name="categoriesId" type="text" onChange={this.handleSubcatlist} value={this.state.categoriesId}>
+             <select name="CategoryId" type="text" onChange={this.handleChange} value={this.state.CategoryId}>
              <option value=''>Select</option>
 
              {this.state.categorydata.length && this.state.categorydata.map( (category) => {

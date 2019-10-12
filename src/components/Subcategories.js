@@ -44,7 +44,7 @@ export default class Subcategories extends React.Component {
                     <td>{subcategory.name}</td>
                     <td>{subcategory.common_name}</td>
                     <td>{subcategory.gstn}</td>
-                    <td>{subcategory.category.name}</td>
+                    <td>{subcategory.Category.name}</td>
                    
                     
                 </tr>);

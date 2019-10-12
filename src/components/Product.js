@@ -425,7 +425,7 @@ const initialState = {
          </div>
        </div>
              <div> Category:
-             <select name="categoriesId" type="text" onChange={this.handleSubcat} value={this.state.categoriesId}>
+             <select name="CategoryId" type="text" onChange={this.handleSubcat} value={this.state.CategoryId}>
                <option value=''>Select</option>
              {this.state.categorydata.length && this.state.categorydata.map( (category) => {
                //console.log(category);

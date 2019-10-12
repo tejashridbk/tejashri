@@ -94,7 +94,7 @@ router.get('/Subcategory', (req, res) => {
         include: [
           {
             model: Category,
-            as: 'categories'
+            as: 'Category',
           }
         ]
       }).then( subcategories => {
@@ -110,8 +110,8 @@ router.get('/Subcategory', (req, res) => {
              name: Subcategory.name,
               common_name: Subcategory.common_name,
               gstn: Subcategory.gstn,
-              category: {
-                name : Subcategory.categories.name,
+              Category: {
+                name : Subcategory.Category.name,
                 //code : Subcategory.categories.code
               }
             }
@@ -124,7 +124,72 @@ router.get('/Subcategory', (req, res) => {
 });
 
 router.get('/Product', (req, res) => {
-    Product.findAll().then( Product=> res.json(Product));
+    //Product.findAll().then( Product=> res.json(Product));
+    Product.findAll({
+        include: [
+          {
+            model: Subcategory,
+            as: 'Subcategory',
+           
+          }
+        ]
+      }).then( products => {
+          //res.json(Subcategory);      const resObj = users.map(user => {
+        console.log(products);
+        //tidy up the user data
+        const resObj = products.map(Product => {
+        return Object.assign(
+            {},
+            {
+            //  code: Product.code,
+             code: Product.code,
+              name: Product.name,
+                gstn: Product.gstn,
+                flange1: Product.flange1,
+                flange2: Product.flange2,               
+                flange3: Product.flange3,
+                weight_per_meter: Product. weight_per_meter,
+                thickness:  Product.thickness ,
+                width:  Product.width,
+                length:  Product.length,
+                description:  Product.description,
+                common_name: Product.common_name,
+                grade_specs:  Product.grade_specs,
+                brandname:  Product.brandname,
+                outer_diameter:  Product.outer_diameter,
+                total:  Product.total,
+                Subcategory: {
+                    name : Product.Subcategory.name,
+                    /*Category: {
+                        name:Subcategory.Category.name
+                    }*/
+                    //code : Subcategory.categories.code
+                  }
+
+                /*Subcategory: Product.Subcategory.map(Subcategory => {
+                    return Object.assign(
+                      {},
+                      {
+                        name: Subcategory.name,
+                        Category: Subcategory.Category.map(Category => {
+                          return Object.assign(
+                            {},
+                               {
+                                name : Category.name,
+                        //code : Subcategory.categories.code
+                         })
+                          })
+                          
+                      })
+       
+            
+                } )*/
+     })
+      
+    });
+    console.log(resObj); 
+    res.json(resObj);  
+});
 });
 
 router.get('/Enquiry', (req, res) => {
@@ -160,7 +225,7 @@ router.get('/Subcat', (req, res) => {
     Subcategory.findAll({
         include: [{
           model: Category,
-          as: 'categories',
+          as: 'Category',
           where: {id: req.query.categoryId}
         }]
       })
