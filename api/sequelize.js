@@ -36,7 +36,7 @@ Quote.hasMany(CreatePO);
 
 // BlogTag will be our way of tracking relationship between Blog and Tag models
 // each Blog can have multiple tags and each Tag can have multiple blogs
-sequelize.sync({ force: false })
+sequelize.sync({ force: true })
     .then(() => {
       console.log(`Database & tables created!`)
     })

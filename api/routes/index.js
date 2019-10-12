@@ -130,6 +130,10 @@ router.get('/Product', (req, res) => {
           {
             model: Subcategory,
             as: 'Subcategory',
+            include:[{
+                model: Category,
+            as: 'Category',
+            }]
            
           }
         ]
@@ -158,20 +162,20 @@ router.get('/Product', (req, res) => {
                 brandname:  Product.brandname,
                 outer_diameter:  Product.outer_diameter,
                 total:  Product.total,
-                Subcategory: {
+                /*Subcategory: {
                     name : Product.Subcategory.name,
-                    /*Category: {
+                    Category: {
                         name:Subcategory.Category.name
-                    }*/
+                    }
                     //code : Subcategory.categories.code
-                  }
+                  } */
 
-                /*Subcategory: Product.Subcategory.map(Subcategory => {
+                subcategories: Product.subcategories.map(Subcategory => {
                     return Object.assign(
                       {},
                       {
                         name: Subcategory.name,
-                        Category: Subcategory.Category.map(Category => {
+                        categories: Subcategory.categories.map(Category => {
                           return Object.assign(
                             {},
                                {
@@ -183,7 +187,7 @@ router.get('/Product', (req, res) => {
                       })
        
             
-                } )*/
+                } )
      })
       
     });
