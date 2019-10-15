@@ -130,10 +130,7 @@ router.get('/Product', (req, res) => {
           {
             model: Subcategory,
             as: 'Subcategory',
-            include:[{
-                model: Category,
-            as: 'Category',
-            }]
+            
            
           }
         ]
@@ -162,15 +159,15 @@ router.get('/Product', (req, res) => {
                 brandname:  Product.brandname,
                 outer_diameter:  Product.outer_diameter,
                 total:  Product.total,
-                /*Subcategory: {
+                Subcategory: {
                     name : Product.Subcategory.name,
-                    Category: {
+                    /*Category: {
                         name:Subcategory.Category.name
-                    }
+                    }*/
                     //code : Subcategory.categories.code
-                  } */
+                  } 
 
-                subcategories: Product.subcategories.map(Subcategory => {
+               /* subcategories: Product.subcategories.map(Subcategory => {
                     return Object.assign(
                       {},
                       {
@@ -187,7 +184,7 @@ router.get('/Product', (req, res) => {
                       })
        
             
-                } )
+                } )*/
      })
       
     });
@@ -198,6 +195,49 @@ router.get('/Product', (req, res) => {
 
 router.get('/Enquiry', (req, res) => {
     Enquiry.findAll().then( Enquiry=> res.json(Enquiry));
+
+    /*Enquiry.findAll({
+        include: [
+          {
+            model: Product,
+            as: 'Product',
+          }
+        ]
+      }).then( enquiries => {
+          //res.json(Subcategory);      const resObj = users.map(user => {
+
+        //tidy up the user data
+        const resObj = enquiries.map(Enquiry => {
+
+        return Object.assign(
+            {},
+            {
+             // partyname: Enquiry.partyname,
+              address: Enquiry.address,
+              phone: Enquiry.phone,
+              emailid: Enquiry.emailid,
+              partyname: Enquiry.partyname,
+              partyaddress: Enquiry.partyaddress,
+              quantity: Enquiry.quantity,
+              date: Enquiry.date,
+              category: Enquiry.category,
+              subcategory: Enquiry.subcategory,
+              size: Enquiry.size,
+              quantity_no: Enquiry.quantity_no,
+              quantity_kg: Enquiry.quantity_kg,
+              total: Enquiry.total,
+              Product: {
+                name : Enquiry.Product.name,
+                //code : Subcategory.categories.code
+              }
+            }
+          )
+
+      });
+      res.json(resObj);
+      console.log(resObj);
+    })*/
+      
 });
 router.get('/Quote', (req, res) => {
     Quote.findAll().then( Quote=> res.json(Quote));

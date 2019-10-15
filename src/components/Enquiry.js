@@ -18,14 +18,13 @@ const initialState = {
 };
 
 export default class Enquiry extends Component {
-  state = {initialState: {}, categorydata: [] , subcategorydata: [] } 
+  state = {initialState: {}, productdata: []  } 
 
   componentDidMount() {
     //axios.get('http://localhost:5000/Enquiry').then(result => this.state.enquirydata);
-    axios.get('http://localhost:5000/Category')
-    .then(result => this.setState({categorydata: result.data})); 
+    axios.get('http://localhost:5000/Product')
+    .then(result => this.setState({productdata: result.data})); 
 
-    
    
   }
 
@@ -58,19 +57,19 @@ export default class Enquiry extends Component {
     //}
   };
 
-  handleSubcat = event => {
+  /*handleSubcat = event => {
     axios.get('http://localhost:5000/Subcat?categoryId='+event.target.value )
     .then(result => this.setState({subcategorydata: result.data})); 
     //console.log(result);
     console.log(this.state.subcategorydata);
       
-    };
+    };*/
 
   render() {
     console.log(this.state.subcategorydata);
     return (
-      //<body className="body">
-      <div className="body">
+     
+     
       <div className="container">
       <form onSubmit={this.handleSubmit}>
         <h1>Enquiry Form</h1>
@@ -119,26 +118,18 @@ export default class Enquiry extends Component {
          <div>
            total:<input name="total" type="number" className="input" value={this.state.total}
             onChange={this.handleChange}/>
-           </div>
-             <div> Category:
-             <select name="categoriesId" type="text" onChange={this.handleSubcat} value={this.state.categoriesId}>
+           
+             <div> Product:
+             <select name="ProductId" type="text" onChange={this.handleChange} value={this.state.ProductId}>
                <option value=''>Select</option>
-             {this.state.categorydata.length && this.state.categorydata.map( (category) => {
+             {this.state.productdata.length && this.state.productdata.map( (product) => {
                //console.log(category);
                 return (
-                <option key={category.id} value={category.id} >{category.name}</option> );
+                <option key={product.id} value={product.id}>{product.name}</option> );
              })}
             </select>
              </div>
 
-             <div> Subcategory:
-             <select name="subcategory" type="text" onChange={this.handleChange} value={this.state.subcategory}>
-             {this.state.subcategorydata.length && this.state.subcategorydata.map( (subcategory) => {
-              // console.log(subcategorydata);
-                return (
-                <option key={subcategory.id} value={subcategory.id}>{subcategory.name}</option> );
-             })}
-            </select>
              </div>
 
              
@@ -147,7 +138,8 @@ export default class Enquiry extends Component {
         <button type="submit"  className="button" >Submit</button>
       </form>
       </div>
-      </div>
+     
+      
     );
   }
 }

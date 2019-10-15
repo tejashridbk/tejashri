@@ -3,7 +3,8 @@ module.exports = (sequelize, type) => {
         id: {
             type: type.INTEGER,
             primaryKey: true,
-            autoIncrement: true
+            autoIncrement: true,
+            defaultValue: type.INTEGER
         },
         code: {
             type: type.STRING,
@@ -67,9 +68,12 @@ module.exports = (sequelize, type) => {
         total: {
             type: type.INTEGER
         }
-
+        
         
     })
+    
+   
+
 }
 
 

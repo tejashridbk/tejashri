@@ -1,16 +1,18 @@
+
 module.exports = (sequelize, type) => {
     return sequelize.define( 'Enquiry', {
         id: {
             type: type.INTEGER,
             primaryKey: true,
-            autoIncrement: true
+            autoIncrement: true,
+            defaultValue: type.INTEGER
         },
         address: {
             type: type.STRING
             
         },
         phone: {
-            type: type.STRING
+            type: type.INTEGER
             //unique: true
         },
         emailid: {
@@ -42,7 +44,9 @@ module.exports = (sequelize, type) => {
             type: type.INTEGER
 
         }
+        
     })
+   
 }
 
 

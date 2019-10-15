@@ -5,6 +5,7 @@ const ProductModel = require('./models/Product');
 const EnquiryModel = require('./models/Enquiry');
 const CreatePOModel = require('./models/CreatePO');
 const QuoteModel = require('./models/Quote');
+const EnquiryproductModel = require('./models/Enquiryproduct');
 
 const sequelize = new Sequelize('aspen1', 'root', 'tejufcbk', {
   host: 'localhost',
@@ -15,27 +16,45 @@ const sequelize = new Sequelize('aspen1', 'root', 'tejufcbk', {
     acquire: 30000,
     idle: 10000
   }
-})
+});
 
 const Category = CategoryModel(sequelize, Sequelize);
 const Subcategory = SubcategoryModel(sequelize, Sequelize);
-const Product = ProductModel(sequelize, Sequelize)
-const Enquiry = EnquiryModel(sequelize, Sequelize)
-const CreatePO = CreatePOModel(sequelize, Sequelize)
-const Quote = QuoteModel(sequelize, Sequelize)
+const Product = ProductModel(sequelize, Sequelize);
+const Enquiry = EnquiryModel(sequelize, Sequelize);
+const CreatePO = CreatePOModel(sequelize, Sequelize);
+const Quote = QuoteModel(sequelize, Sequelize);
+const Enquiryproduct = EnquiryproductModel(sequelize, Sequelize);
+
 
 Subcategory.belongsTo(Category, {as: 'Category'});
 //Subcategory.hasMany(Product);
 //Category.hasMany(Subcategory, {as: 'Category'});
 
 Product.belongsTo(Subcategory, {as: 'Subcategory'});
-Product.hasMany(Enquiry);
+//Enquiry.belongsTo(Product,{as: 'Product'});
 Enquiry.hasMany(Quote);
 Quote.hasMany(CreatePO);
 //CreatePO.hasMany(Quote);
+//Enquiryproduct.belongsTo(Enquiry, { foreignKey: 'EnquiryId', targetKey: 'EnquiryId', as: 'Enquiry' });
+//Enquiryproduct.belongsTo(Product, { foreignKey: 'ProductId', targetKey: 'ProductId', as: 'Product' })
 
-// BlogTag will be our way of tracking relationship between Blog and Tag models
-// each Blog can have multiple tags and each Tag can have multiple blogs
+//Enquiry.belongsToMany(Product, { as: 'ProductInEnquiry', through: models.Enquiryproduct, foreignKey: 'EnquiryId'});
+//Product.belongsToMany(Enquiry, { as: 'EnquiryInProduct', through: models.Enquiryproduct, foreignKey: 'ProductId'});
+Enquiryproduct.associate = (models) => {
+  Enquiryproduct.belongsTo(models.Enquiry, { foreignKey: 'EnquiryId', targetKey: 'EnquiryId', as: 'Enquiry' });
+  Enquiryproduct.belongsTo(models.Product, { foreignKey: 'ProductId', targetKey: 'ProductId', as: 'Product' });
+
+};
+Enquiry.associate = (models) => {
+  Enquiry.belongsToMany(models.Product, { as: 'Product', through: models.Enquiryproduct, foreignKey: 'EnquiryId'});
+
+};
+Product.associate = (models) => {
+  Product.belongsToMany(models.Enquiry, { as: 'Enquiry', through: models.Enquiryproduct, foreignKey: 'ProductId'});
+
+};
+
 sequelize.sync({ force: true })
     .then(() => {
       console.log(`Database & tables created!`)
@@ -46,7 +65,9 @@ module.exports = {
      Subcategory,
      Product,
      Enquiry,
+     Enquiryproduct,
      CreatePO,
-     Quote
+     Quote,
+     
 
   };
