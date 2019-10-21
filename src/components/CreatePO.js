@@ -51,7 +51,7 @@ export default class CreatePO extends Component {
 
   render() {
       console.log(this.state);
-      {return (
+      return (
         <body className="body">
       <div className="container">
       <form onSubmit={this.handleSubmit}>
@@ -101,6 +101,6 @@ export default class CreatePO extends Component {
     );
     }
   }
-}
+
 
 

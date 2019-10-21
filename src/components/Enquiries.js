@@ -5,7 +5,7 @@ import axios from 'axios';
 
 export default class Enquiries extends React.Component {
     state = {
-        enquirydata: {}
+        enquirydata: {}, productdata: {}
     }
 
     componentDidMount() {
@@ -21,8 +21,8 @@ export default class Enquiries extends React.Component {
 
         return (
                  
-            <body>
-            <table border="1" >
+            
+            <table border="1"  >
             <h1> Enquiry Details</h1>
             <tr>
                 
@@ -33,13 +33,13 @@ export default class Enquiries extends React.Component {
                 <td>Party Addrress</td>
                 <td>Quantity</td>
                 <td>Date</td>
-                <td>Category</td>
-                <td>Subcategory</td>
                 <td>Size</td>
                 <td>Quantity (in numbers)</td>
                 <td>Quantity (in kg)</td>
                 <td>Total</td>
-                
+                <td>Product</td>
+                <td>Add quote</td>
+                <td>Add purchase order</td>
                 
             </tr>
             {enquiryData.map( (enquiry) => {
@@ -53,13 +53,11 @@ export default class Enquiries extends React.Component {
                     <td>{enquiry.partyaddress}</td>
                     <td>{enquiry.quantity}</td>
                     <td>{enquiry.date}</td>
-                    <td>{enquiry.categoriesId}</td>
-                    <td>{enquiry.subcategory}</td>
                     <td>{enquiry.size}</td>
                     <td>{enquiry.quantity_no}</td>
                     <td>{enquiry.quantity_kg}</td>
                     <td>{enquiry.total}</td>
-                    
+                    <td>{enquiry.Product.name}</td>
                     <td> <a href={`/Quote/${enquiry.id}`}>Quote </a> </td>
                     <td> <a href={`/CreatePO/${enquiry.id}`}>Purchase </a> </td>
                 </tr>
@@ -73,7 +71,7 @@ export default class Enquiries extends React.Component {
                 </a> </button>
 
             </table>
-            </body> 
+           
             
         )
     }

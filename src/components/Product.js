@@ -195,7 +195,7 @@ const initialState = {
  
    render() {
      return (
-      <body className="body">
+      
        <div className="container">
        <form onSubmit={this.handleSubmit}>
          <h1>Product Details</h1>
@@ -437,6 +437,7 @@ const initialState = {
 
              <div> Subcategory:
              <select name="SubcategoryId" type="text" onChange={this.handleChange} value={this.state.SubcategoryId}>
+             <option value=''>Select</option>
              {this.state.subcategorydata.length && this.state.subcategorydata.map( (subcategory) => {
               // console.log(subcategorydata);
                 return (
@@ -453,7 +454,7 @@ const initialState = {
          <button type="submit"  className="button" >Submit</button>
        </form>
        </div>
-       </body>
+       
      );
    }
  }

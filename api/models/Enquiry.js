@@ -5,7 +5,7 @@ module.exports = (sequelize, type) => {
             type: type.INTEGER,
             primaryKey: true,
             autoIncrement: true,
-            defaultValue: type.INTEGER
+            //defaultValue: type.INTEGER
         },
         address: {
             type: type.STRING
@@ -13,7 +13,7 @@ module.exports = (sequelize, type) => {
         },
         phone: {
             type: type.INTEGER
-            //unique: true
+            
         },
         emailid: {
             type: type.STRING

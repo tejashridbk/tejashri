@@ -7,7 +7,7 @@ export default class Products extends React.Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:5000/Product').then( results => {
+        axios.get('http://localhost:5000/products').then( results => {
             this.setState({productdata: results});
         });
     }
@@ -65,21 +65,14 @@ export default class Products extends React.Component {
                     <td>{product.brandname}</td>
                     <td>{product.outer_diameter}</td>
                     <td>{product.total}</td>
-
-                   
-                    
-                    <td>{product.Subcategory.name}</td>
-                    
-
-                </tr>);
+                     <td>{product.Subcategory.name}</td>
+                    </tr>);
             })
             }
-             
-             <button> <a href="http://localhost:3001/Product" >
+            <button> <a href="http://localhost:3001/Product" >
                 Add Product
                 </a> </button>
-             
-            </table>
+          </table>
         )
     }
 }

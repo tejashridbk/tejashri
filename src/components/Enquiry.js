@@ -117,7 +117,7 @@ export default class Enquiry extends Component {
            </div>
          <div>
            total:<input name="total" type="number" className="input" value={this.state.total}
-            onChange={this.handleChange}/>
+            onChange={this.handleChange}/> </div>
            
              <div> Product:
              <select name="ProductId" type="text" onChange={this.handleChange} value={this.state.ProductId}>
@@ -129,12 +129,27 @@ export default class Enquiry extends Component {
              })}
             </select>
              </div>
-
+             <div> Product:
+             <select name="ProductId" type="text" onChange={this.handleChange} value={this.state.ProductId}>
+               <option value=''>Select</option>
+             {this.state.productdata.length && this.state.productdata.map( (product) => {
+               //console.log(category);
+                return (
+                <option key={product.id} value={product.id}>{product.name}</option> );
+             })}
+            </select>
              </div>
-
-             
-             
-    
+        <div>  
+        <button >Add Product 
+        <select name="ProductId" type="text" onChange={this.handleChange} value={this.state.ProductId}>
+               <option value=''>Select</option>
+             {this.state.productdata.length && this.state.productdata.map( (product) => {
+               //console.log(category);
+                return (
+                <option key={product.id} value={product.id}>{product.name}</option> );
+             })}
+            </select>
+          </button></div>
         <button type="submit"  className="button" >Submit</button>
       </form>
       </div>

@@ -1,16 +1,14 @@
-
-
-module.exports = (sequelize, type) => {
+ module.exports = (sequelize, type) => {
     
     return sequelize.define( 'Enquiryproduct', {
         id: {
             type: type.INTEGER,
             primaryKey: true,
             autoIncrement: true,
-            defaultValue: type.INTEGER
+            //defaultValue: type.INTEGER
             
         },
-        EnquiryId: {
+       EnquiryId: {
             type: type.INTEGER,
             primaryKey: false,
             references: {

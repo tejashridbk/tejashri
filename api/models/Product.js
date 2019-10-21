@@ -4,11 +4,11 @@ module.exports = (sequelize, type) => {
             type: type.INTEGER,
             primaryKey: true,
             autoIncrement: true,
-            defaultValue: type.INTEGER
+            //defaultValue: type.INTEGER
         },
         code: {
             type: type.STRING,
-            unique: true
+           // unique: true
         },
         name: {
             type: type.STRING

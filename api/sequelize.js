@@ -41,21 +41,21 @@ Quote.hasMany(CreatePO);
 
 //Enquiry.belongsToMany(Product, { as: 'ProductInEnquiry', through: models.Enquiryproduct, foreignKey: 'EnquiryId'});
 //Product.belongsToMany(Enquiry, { as: 'EnquiryInProduct', through: models.Enquiryproduct, foreignKey: 'ProductId'});
-Enquiryproduct.associate = (models) => {
-  Enquiryproduct.belongsTo(models.Enquiry, { foreignKey: 'EnquiryId', targetKey: 'EnquiryId', as: 'Enquiry' });
-  Enquiryproduct.belongsTo(models.Product, { foreignKey: 'ProductId', targetKey: 'ProductId', as: 'Product' });
+//Enquiryproduct.associate = (models) => {
+  Enquiryproduct.belongsTo(Enquiry, { foreignKey: 'EnquiryId' });
+  Enquiryproduct.belongsTo(Product, { foreignKey: 'ProductId' });
 
-};
-Enquiry.associate = (models) => {
-  Enquiry.belongsToMany(models.Product, { as: 'Product', through: models.Enquiryproduct, foreignKey: 'EnquiryId'});
+//};
+//Enquiry.associate = (models) => {
+  //Enquiry.belongsToMany(Product, { through: Enquiryproduct, foreignKey: 'EnquiryId'});
 
-};
-Product.associate = (models) => {
-  Product.belongsToMany(models.Enquiry, { as: 'Enquiry', through: models.Enquiryproduct, foreignKey: 'ProductId'});
+//};
+//Product.associate = (models) => {
+  Product.belongsToMany(Enquiry, { through: Enquiryproduct, foreignKey: 'ProductId'});
 
-};
+//};
 
-sequelize.sync({ force: true })
+sequelize.sync({ force: false })
     .then(() => {
       console.log(`Database & tables created!`)
     })

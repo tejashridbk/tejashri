@@ -123,20 +123,25 @@ router.get('/Subcategory', (req, res) => {
       
 });
 
-router.get('/Product', (req, res) => {
+router.get('/products', (req, res) => {
     //Product.findAll().then( Product=> res.json(Product));
     Product.findAll({
         include: [
           {
             model: Subcategory,
             as: 'Subcategory',
-            
+            include: [
+                {
+                    model: Category,
+                    as: 'Category',
+                }
+            ]
            
           }
         ]
       }).then( products => {
           //res.json(Subcategory);      const resObj = users.map(user => {
-        console.log(products);
+        
         //tidy up the user data
         const resObj = products.map(Product => {
         return Object.assign(
@@ -159,15 +164,14 @@ router.get('/Product', (req, res) => {
                 brandname:  Product.brandname,
                 outer_diameter:  Product.outer_diameter,
                 total:  Product.total,
-                Subcategory: {
+               /* Subcategory: {
                     name : Product.Subcategory.name,
-                    /*Category: {
+                    Category: {
                         name:Subcategory.Category.name
-                    }*/
+                    }
                     //code : Subcategory.categories.code
-                  } 
-
-               /* subcategories: Product.subcategories.map(Subcategory => {
+                  } */
+                subcategories: products.subcategories.map(Subcategory => {
                     return Object.assign(
                       {},
                       {
@@ -184,11 +188,11 @@ router.get('/Product', (req, res) => {
                       })
        
             
-                } )*/
+                } )
      })
       
     });
-    console.log(resObj); 
+    //console.log(resObj); 
     res.json(resObj);  
 });
 });
